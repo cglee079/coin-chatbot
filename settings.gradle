@@ -1,0 +1,5 @@
+rootProject.name = 'coinchatbot'
+
+include 'coinchatbot-notifier',
+    'coinchatbot-endpoint-client',
+    'coinchatbot-core'

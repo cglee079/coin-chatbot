@@ -1,0 +1,76 @@
+buildscript {
+	ext {
+		springBootVersion = '2.3.0.RELEASE'
+		querydslPluginVersion = '1.0.10'
+		springCloudVersion = 'Hoxton.SR3'
+	}
+
+	repositories {
+		mavenCentral()
+		maven { url "https://plugins.gradle.org/m2/" } // plugin 저장소
+	}
+
+	dependencies {
+		classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+		classpath "io.spring.gradle:dependency-management-plugin:0.6.0.RELEASE"
+		classpath "io.franzbecker:gradle-lombok:3.1.0"
+		classpath "gradle.plugin.com.ewerk.gradle.plugins:querydsl-plugin:${querydslPluginVersion}"
+	}
+}
+
+subprojects {
+	apply plugin: 'java'
+	apply plugin: 'org.springframework.boot'
+	apply plugin: "io.franzbecker.gradle-lombok"
+	apply plugin: 'io.spring.dependency-management'
+
+	group = 'com.podo'
+	sourceCompatibility = 11
+
+	bootJar {
+		enabled = false
+	}
+
+	jar {
+		enabled = true
+	}
+
+	configurations {
+		compileOnly {
+			extendsFrom annotationProcessor
+		}
+	}
+
+	repositories {
+		mavenCentral()
+	}
+
+	dependencies {
+		compileOnly 'org.projectlombok:lombok'
+		annotationProcessor 'org.projectlombok:lombok'
+
+		testImplementation('org.springframework.boot:spring-boot-starter-test') {
+			exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+		}
+	}
+
+	test {
+		useJUnitPlatform()
+		dependsOn 'cleanTest'
+		testLogging {
+			events "passed", "skipped", "failed"
+		}
+	}
+
+	dependencyManagement {
+		imports {
+			mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+		}
+	}
+
+}
+
+
+
+
+
