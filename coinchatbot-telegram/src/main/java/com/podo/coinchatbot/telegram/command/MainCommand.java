@@ -11,7 +11,7 @@ public enum MainCommand implements CommandEnum {
 	NULL("", ""),
 	CURRENT_PRICE("현재가", "Current Price"),
 	MARKETS_PRICE("거래소별 현재가", "Each market price"),
-	CHANGE_RATE("비트대비 변화량", "Change rate"),
+	COMPARED_TO_BTC("비트대비 변화량", "Change rate"),
 	CALCULATE("손익금 계산", "Calculate"),
 	SET_INVEST("투자금액 설정", "Set Investment amount"),
 	SET_COINCNT("코인개수 설정", "Set The number of coins"),

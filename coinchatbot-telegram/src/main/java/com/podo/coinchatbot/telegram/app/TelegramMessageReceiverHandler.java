@@ -5,6 +5,7 @@ import com.podo.coinchatbot.core.Coin;
 import com.podo.coinchatbot.core.Lang;
 import com.podo.coinchatbot.core.Market;
 import com.podo.coinchatbot.telegram.Keyboard;
+import com.podo.coinchatbot.telegram.coin.CoinMeta;
 import com.podo.coinchatbot.telegram.command.MainCommand;
 import com.podo.coinchatbot.telegram.domain.client.UserService;
 import com.podo.coinchatbot.telegram.exception.InvalidLanguageException;
@@ -36,7 +37,7 @@ public class TelegramMessageReceiverHandler {
     private final List<Market> enabledMarkets;
     private final Map<Menu, MenuHandler> menuHandlers;
     private final TelegramMessageSender telegramMessageSender;
-    private final NumberFormatter numberFormatter;
+    private final CoinMeta coinMeta;
     private final UserService userService;
 
     public void receive(Message message) {
@@ -63,18 +64,18 @@ public class TelegramMessageReceiverHandler {
         if (messageText.equals("/start")) {
             Lang lang = user.getLang();
             telegramMessageSender.send(SendMessageVo.create(messageVo, explainAlreadyStartService(lang), Keyboard.mainKeyboard(lang)));
-            telegramMessageSender.send(SendMessageVo.create(messageVo, ClientSettingMessage.get(user, lang, numberFormatter), Keyboard.mainKeyboard(lang)));
+            telegramMessageSender.send(SendMessageVo.create(messageVo, ClientSettingMessage.get(user, lang, coinMeta.getNumberFormatter()), Keyboard.mainKeyboard(lang)));
             return;
         }
 
         userService.updateMessageSendAt(user.getId(), messageReceivedAt);
 
-        handleCommand(messageVo, messageText, user.getMenuStatus());
+        handleCommand(messageVo, user, coin, coinMeta, messageText);
     }
 
-    private void handleCommand(MessageVo messageVo, String requestMessage, Menu userMenuStatus) {
-        final MenuHandler menuHandler = menuHandlers.get(userMenuStatus);
-        menuHandler.handle(messageVo, requestMessage);
+    private void handleCommand(MessageVo messageVo, UserDto user, Coin coin, CoinMeta coinMeta, String messageText) {
+        final MenuHandler menuHandler = menuHandlers.get(user.getMenuStatus());
+        menuHandler.handle(messageVo, coin, coinMeta, user, messageText);
     }
 
     public String drawStartMessage(Lang lang) {

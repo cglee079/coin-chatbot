@@ -1,5 +1,6 @@
 dependencies {
     implementation project (':coinchatbot-core')
+    implementation project (':coinchatbot-endpoint-client')
 
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'

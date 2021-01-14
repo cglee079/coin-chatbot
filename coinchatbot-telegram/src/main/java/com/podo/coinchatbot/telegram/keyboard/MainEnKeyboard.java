@@ -21,7 +21,7 @@ public class MainEnKeyboard extends ReplyKeyboardMarkup {
 	    KeyboardRow keyboardFirstRow = new KeyboardRow();
 	    keyboardFirstRow.add(MainCommand.CURRENT_PRICE.getCmd(lang));
 	    keyboardFirstRow.add(MainCommand.MARKETS_PRICE.getCmd(lang));
-	    keyboardFirstRow.add(MainCommand.CHANGE_RATE.getCmd(lang));
+	    keyboardFirstRow.add(MainCommand.COMPARED_TO_BTC.getCmd(lang));
 	    keyboardFirstRow.add(MainCommand.CALCULATE.getCmd(lang));
 
 	    KeyboardRow keyboardSecondRow = new KeyboardRow();

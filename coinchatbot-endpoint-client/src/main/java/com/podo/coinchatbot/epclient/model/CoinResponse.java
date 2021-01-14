@@ -34,4 +34,13 @@ public class CoinResponse extends Throwable {
         coinResponse.errorMessage = errorMessage;
         return coinResponse;
     }
+
+    public boolean isSuccess(){
+        return result;
+    }
+
+    public Double getCurrentPrice(){
+        return lastPrice;
+    }
+
 }
