@@ -1,7 +1,6 @@
 package com.podo.coinchatbot.core;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 
 @AllArgsConstructor
 public enum Market{
@@ -21,4 +20,13 @@ public enum Market{
 	HADAX,
 	OKEX;
 
+	public boolean isKRW() {
+
+
+	}
+
+	public boolean isUSD() {
+
+
+	}
 }

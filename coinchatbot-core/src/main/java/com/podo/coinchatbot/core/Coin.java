@@ -2,8 +2,9 @@ package com.podo.coinchatbot.core;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 public enum Coin {
 	ADA("에이다", "Cardano"),
 	BCH("비트코인캐시", "Bitcoin Cash"),
@@ -42,9 +43,14 @@ public enum Coin {
 	WAVES("웨이브", "Waves");
 
 
-	@Getter
 	private final String kr;
+	private final String en;
 
-	@Getter
-	private final String us;
+	public String kr() {
+		return kr;
+	}
+
+	public String en() {
+		return en;
+	}
 }
