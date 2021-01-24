@@ -50,7 +50,7 @@ public class EachMarketPriceMessage {
                 message.append(MessageUtil.toMarketStr(market, language) + "  : ");
 
                 if (marketToCurrentPrice.get(market) == null) {
-                    message.append("Server Error");
+                    message.append("Server Error\n");
                     continue;
                 }
 
@@ -77,7 +77,7 @@ public class EachMarketPriceMessage {
 
                 message.append(MessageUtil.toMarketStr(market, language) + "  : ");
                 if (marketToCurrentPrice.get(market) == null) {
-                    message.append("Server Error");
+                    message.append("Server Error\n");
                     continue;
                 }
 
