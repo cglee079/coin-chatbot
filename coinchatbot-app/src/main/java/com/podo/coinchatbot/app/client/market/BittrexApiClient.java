@@ -59,6 +59,8 @@ public class BittrexApiClient extends MarketApiClient {
     @Override
     public void refresh() {
         apiCallResult = ApiCaller.callGetApi(URL);
-        response = new JSONObject(apiCallResult.getResponseBody());
+        if(apiCallResult.isSuccess()) {
+            response = new JSONObject(apiCallResult.getResponseBody());
+        }
     }
 }
