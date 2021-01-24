@@ -58,6 +58,8 @@ public class OkexApiClient extends MarketApiClient {
     @Override
     public void refresh() {
         apiCallResult = ApiCaller.callGetApi(URL);
-        response = new JSONArray(apiCallResult.getResponseBody());
+        if(apiCallResult.isSuccess()) {
+            response = new JSONArray(apiCallResult.getResponseBody());
+        }
     }
 }
