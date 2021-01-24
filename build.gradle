@@ -26,6 +26,7 @@ subprojects {
 
 	group = 'com.podo'
 	sourceCompatibility = 11
+	targetCompatibility = 11
 
 	bootJar {
 		enabled = false
