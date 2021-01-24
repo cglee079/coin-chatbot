@@ -1,3 +1,5 @@
 .idea
 .gradle
 build
+*-dev.yml
+*-prod.yml
