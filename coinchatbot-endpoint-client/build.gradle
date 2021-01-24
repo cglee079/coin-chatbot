@@ -1,6 +1,0 @@
-dependencies {
-	implementation project (':coinchatbot-core')
-	implementation 'org.springframework.boot:spring-boot-starter'
-	implementation group: 'org.json', name: 'json', version: '20200518'
-	implementation group: 'commons-httpclient', name: 'commons-httpclient', version: '3.1'
-}

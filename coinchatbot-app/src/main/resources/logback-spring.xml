@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <springProperty scope="context" name="app" source="spring.application.name"/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <customFields>{"app":"${app}"}</customFields>
+        </encoder>
+    </appender>
+
+    <appender name="LOG_STASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <destination>192.168.50.2:15000</destination>
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <customFields>{"app":"${app}"}</customFields>
+        </encoder>
+    </appender>
+
+    <springProfile name="dev">
+        <root level="ERROR">
+            <appender-ref ref="LOG_STASH"/>
+        </root>
+    </springProfile>
+
+    <springProfile name="prod">
+        <root level="ERROR">
+            <appender-ref ref="LOG_STASH"/>
+        </root>
+    </springProfile>
+
+    <logger name="MESSAGE_LOGGER" additivity="false" level="INFO">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="LOG_STASH"/>
+    </logger>
+
+    <logger name="HTTP_CLIENT_LOGGER" additivity="false" level="INFO">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="LOG_STASH"/>
+    </logger>
+
+</configuration>
+
