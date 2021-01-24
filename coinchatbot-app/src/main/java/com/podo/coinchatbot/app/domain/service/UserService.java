@@ -146,4 +146,8 @@ public class UserService {
     }
 
 
+    public UserDto findById(Long userId) {
+        Optional<User> userOptional = userRepository.findById(userId);
+        return userOptional.map(UserDto::new).orElseThrow(() -> new InvalidUserException(userId));
+    }
 }

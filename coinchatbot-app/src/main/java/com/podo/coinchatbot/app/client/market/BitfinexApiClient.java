@@ -67,7 +67,7 @@ public class BitfinexApiClient extends MarketApiClient {
 
         String urlParam = String.join(",", coinToParameterValue.values());
 
-        apiCallResult = ApiCaller.callApi(URL + urlParam);
+        apiCallResult = ApiCaller.callGetApi(URL + urlParam);
         response = new JSONArray(apiCallResult.getResponseBody());
     }
 

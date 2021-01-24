@@ -1,6 +1,7 @@
-package com.podo.coinchatbot.app.config;
+package com.podo.coinchatbot.app.config.initializer;
 
 import com.podo.coinchatbot.app.client.market.MarketApiClient;
+import com.podo.coinchatbot.app.config.CoinProperties;
 import com.podo.coinchatbot.core.Coin;
 import com.podo.coinchatbot.core.Market;
 import org.springframework.stereotype.Component;

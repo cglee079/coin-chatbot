@@ -5,6 +5,8 @@ import com.podo.coinchatbot.app.domain.exception.InvalidUserTargetAlarmException
 import com.podo.coinchatbot.app.domain.repository.UserTargetAlarmRepository;
 import com.podo.coinchatbot.app.domain.dto.UserTargetAlarmDto;
 import com.podo.coinchatbot.app.domain.dto.UserTargetAlarmInsertDto;
+import com.podo.coinchatbot.core.Coin;
+import com.podo.coinchatbot.core.Market;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -49,5 +51,23 @@ public class UserTargetAlarmService {
     @Transactional
     public void deleteByUserId(Long userId) {
         userTargetAlarmRepository.deleteByUserId(userId);
+    }
+
+    @Transactional(readOnly = true)
+    public List<UserTargetAlarmDto> getForFocusUpTargetAlarm(Coin coin, Market market, BigDecimal currentPrice) {
+        return userTargetAlarmRepository.findForFocusUpTargetAlarm(coin, market, currentPrice).stream()
+                .map(UserTargetAlarmDto::new)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    public List<UserTargetAlarmDto> getForFocusDownTargetAlarm(Coin coin, Market market, BigDecimal currentPrice) {
+        return userTargetAlarmRepository.findForFocusDownTargetAlarm(coin, market, currentPrice).stream()
+                .map(UserTargetAlarmDto::new)
+                .collect(Collectors.toList());
+    }
+
+    public void deleteById(Long id) {
+        userTargetAlarmRepository.deleteById(id);
     }
 }

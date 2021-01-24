@@ -48,11 +48,11 @@ public class SuggestMessageHandler extends AbstractMenuHandler {
 
         switch (command) {
             case OUT:
-                sender.send(SendMessageVo.create(messageVo, CommonMessage.toMain(language), Keyboard.mainKeyboard(language)));
+                sender.sendMessage(SendMessageVo.create(messageVo, CommonMessage.toMain(language), Keyboard.mainKeyboard(language)));
                 break;
             default:
                 userSuggestService.insertNew(userId, messageText);
-                sender.send(SendMessageVo.create(messageVo, messageThankYouSuggest(language), Keyboard.mainKeyboard(language)));
+                sender.sendMessage(SendMessageVo.create(messageVo, messageThankYouSuggest(language), Keyboard.mainKeyboard(language)));
 
                 //TO ADMIN
                 StringBuilder adminNotifyMessage = new StringBuilder();
@@ -61,7 +61,7 @@ public class SuggestMessageHandler extends AbstractMenuHandler {
                 adminNotifyMessage.append("\n\n------------------\n");
                 adminNotifyMessage.append(" By ");
                 adminNotifyMessage.append(user.getUsername() + " [" + userId + " ]");
-                sender.send(SendMessageVo.create(new MessageVo(adminTelegramId, adminChatId, null), adminNotifyMessage.toString(), Keyboard.mainKeyboard(language)));
+                sender.sendMessage(SendMessageVo.create(new MessageVo(adminTelegramId, adminChatId, null), adminNotifyMessage.toString(), Keyboard.mainKeyboard(language)));
                 break;
         }
 

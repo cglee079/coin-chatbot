@@ -64,7 +64,7 @@ public class BinanceApiClient extends MarketApiClient {
 
     @Override
     public void refresh() {
-        apiCallResult = ApiCaller.callApi(URL);
+        apiCallResult = ApiCaller.callGetApi(URL);
         response = new JSONArray(apiCallResult.getResponseBody());
     }
 

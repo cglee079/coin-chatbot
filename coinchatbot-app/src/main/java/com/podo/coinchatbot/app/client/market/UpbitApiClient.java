@@ -21,7 +21,7 @@ public class UpbitApiClient extends MarketApiClient {
 
     @Override
     public CoinResponse getCoin(Coin coin) {
-        ApiCallResult apiCallResult = ApiCaller.callApi(URL + getParameterValue(coin));
+        ApiCallResult apiCallResult = ApiCaller.callGetApi(URL + getParameterValue(coin));
 
         if (!apiCallResult.isSuccess()) {
             return CoinResponse.error(apiCallResult.getErrorMessage());

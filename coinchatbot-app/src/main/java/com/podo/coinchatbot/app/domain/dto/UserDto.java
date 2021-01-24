@@ -19,7 +19,8 @@ import java.time.LocalDateTime;
 public class UserDto {
     private Long id;
     private Coin coin;
-    private String telegramId;
+    private Integer telegramId;
+    private Long chatId;
     private String username;
     private Long timeDifference;
     private Language language;
@@ -35,9 +36,12 @@ public class UserDto {
     private Integer errorCount;
     private UserStatus userStatus;
 
+
     public UserDto(User user) {
         this.id = user.getId();
         this.coin = user.getCoin();
+        this.telegramId = user.getTelegramId();
+        this.chatId = user.getChatId();
         this.username = user.getUsername();
         this.menuStatus = user.getMenuStatus();
         this.language = user.getLanguage();

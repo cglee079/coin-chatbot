@@ -39,7 +39,7 @@ import static com.podo.coinchatbot.core.Language.KR;
 @RequiredArgsConstructor
 public class TelegramMessageReceiverHandler {
 
-    private static final Logger LOGGER =LoggerFactory.getLogger("MESSAGE_LOGGER");
+    private static final Logger LOGGER = LoggerFactory.getLogger("MESSAGE_LOGGER");
 
     private final Coin coin;
     private final Map<Menu, MenuHandler> menuHandlers;
@@ -59,34 +59,28 @@ public class TelegramMessageReceiverHandler {
             MessageContext.init();
             handle(message);
         } catch (TelegramApiRuntimeException e) {
-            handleException(e);
+            MessageContext.putException(e);
             if (user != null) {
-                telegramMessageSender.send(SendMessageVo.create(new MessageVo(telegramId, chatId, messageId), e.getMessage() + CommonMessage.toMain(user.getLanguage()), Keyboard.mainKeyboard(user.getLanguage())));
+                telegramMessageSender.sendMessage(SendMessageVo.create(new MessageVo(telegramId, chatId, messageId), e.getMessage() + CommonMessage.toMain(user.getLanguage()), Keyboard.mainKeyboard(user.getLanguage())));
                 userService.increaseErrorCount(user.getId());
                 userService.updateMenuStatus(user.getId(), Menu.MAIN);
             }
         } catch (UserInvalidInputException e) {
-            handleException(e);
+            MessageContext.putException(e);
             if (user != null) {
-                telegramMessageSender.send(SendMessageVo.create(new MessageVo(telegramId, chatId, messageId), e.getMessage() + CommonMessage.toMain(user.getLanguage()), Keyboard.mainKeyboard(user.getLanguage())));
+                telegramMessageSender.sendMessage(SendMessageVo.create(new MessageVo(telegramId, chatId, messageId), e.getMessage() + CommonMessage.toMain(user.getLanguage()), Keyboard.mainKeyboard(user.getLanguage())));
                 userService.updateMenuStatus(user.getId(), Menu.MAIN);
             }
         } catch (Exception e) {
-            handleException(e);
+            MessageContext.putException(e);
             if (user != null) {
-                telegramMessageSender.send(SendMessageVo.create(new MessageVo(telegramId, chatId, messageId), e.getMessage() + CommonMessage.warningWaitSecond(user.getLanguage()), Keyboard.mainKeyboard(user.getLanguage())));
+                telegramMessageSender.sendMessage(SendMessageVo.create(new MessageVo(telegramId, chatId, messageId), e.getMessage() + CommonMessage.warningWaitSecond(user.getLanguage()), Keyboard.mainKeyboard(user.getLanguage())));
                 userService.updateMenuStatus(user.getId(), Menu.MAIN);
             }
         } finally {
             LOGGER.info("", StructuredArguments.value("context", MessageContext.toLog()));
             MessageContext.removeAll();
         }
-    }
-
-    private void handleException(Exception e) {
-        e.printStackTrace();
-        MessageContext.put("exceptionMessage", e.getMessage());
-        MessageContext.put("stackTrace", Arrays.stream(e.getStackTrace()).map(StackTraceElement::toString).collect(Collectors.joining("\n")));
     }
 
     public void handle(Message message) {
@@ -99,10 +93,10 @@ public class TelegramMessageReceiverHandler {
         final String messageText = message.getText();
         final LocalDateTime messageReceivedAt = LocalDateTime.now();
 
-        MessageContext.put("telegramId", telegramId);
-        MessageContext.put("chatId", chatId);
+        MessageContext.put("telegramId", telegramId.toString());
+        MessageContext.put("chatId", chatId.toString());
+        MessageContext.put("messageId", messageId.toString());
         MessageContext.put("messageText", messageText);
-        MessageContext.put("messageId", messageId);
         MessageContext.putDateTime("messageReceivedAt", messageReceivedAt);
 
         final MessageVo messageVo = new MessageVo(telegramId, chatId, messageId);
@@ -111,16 +105,15 @@ public class TelegramMessageReceiverHandler {
 
         if (Objects.isNull(user)) {
             userService.createNewUser(coin, telegramId, chatId, username, coinMeta.getFirstEnableMarkets(), messageReceivedAt);
-
-            telegramMessageSender.send(SendMessageVo.create(messageVo, drawStartMessage(KR, coin) + HelpMessage.help(KR, coin, coinMeta.getEnableMarkets()), Keyboard.mainKeyboard(KR)));
-            telegramMessageSender.send(SendMessageVo.create(messageVo, HelpMessage.explainForForeigner(), Keyboard.mainKeyboard(KR)));
+            telegramMessageSender.sendMessage(SendMessageVo.create(messageVo, drawStartMessage(KR, coin) + HelpMessage.help(KR, coin, coinMeta.getEnableMarkets()), Keyboard.mainKeyboard(KR)));
+            telegramMessageSender.sendMessage(SendMessageVo.create(messageVo, HelpMessage.explainForForeigner(), Keyboard.mainKeyboard(KR)));
             return;
         }
 
         if (messageText.equals("/start")) {
             Language language = user.getLanguage();
-            telegramMessageSender.send(SendMessageVo.create(messageVo, explainAlreadyStartService(language, coin), Keyboard.mainKeyboard(language)));
-            telegramMessageSender.send(SendMessageVo.create(messageVo, UserSettingMessage.get(user, coinMeta.getCoinFormatter()), Keyboard.mainKeyboard(language)));
+            telegramMessageSender.sendMessage(SendMessageVo.create(messageVo, explainAlreadyStartService(language, coin), Keyboard.mainKeyboard(language)));
+            telegramMessageSender.sendMessage(SendMessageVo.create(messageVo, UserSettingMessage.get(user, coinMeta.getCoinFormatter()), Keyboard.mainKeyboard(language)));
             return;
         }
 

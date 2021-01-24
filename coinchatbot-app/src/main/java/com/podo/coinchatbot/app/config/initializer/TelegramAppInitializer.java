@@ -1,5 +1,6 @@
-package com.podo.coinchatbot.app.config;
+package com.podo.coinchatbot.app.config.initializer;
 
+import com.podo.coinchatbot.app.config.CoinProperties;
 import com.podo.coinchatbot.app.domain.service.UserService;
 import com.podo.coinchatbot.app.model.CoinMeta;
 import com.podo.coinchatbot.app.model.Menu;
@@ -52,6 +53,7 @@ public class TelegramAppInitializer {
             TelegramMessageReceiver telegramMessageReceiver = new TelegramMessageReceiver(botToken, botUsername, telegramMessageReceiverHandler);
 
             beanFactory.registerSingleton(coin.name() + TelegramMessageReceiver.class.getName(), telegramMessageReceiver);
+            beanFactory.registerSingleton(coin.name() + TelegramMessageSender.class.getName(), telegramMessageSender);
         }
     }
 
@@ -69,7 +71,5 @@ public class TelegramAppInitializer {
     private CoinFormatter createCoinFormatter(CoinProperties.CoinProperty.DigitConfig digitConfig) {
         return new CoinFormatter(digitConfig.getKrw(), digitConfig.getUsd(), digitConfig.getUsd());
     }
-
-
 
 }

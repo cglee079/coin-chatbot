@@ -1,18 +1,13 @@
-package com.podo.coinchatbot.app.telegram;
+package com.podo.coinchatbot.app.job;
 
-import com.podo.coinchatbot.app.telegram.exception.TelegramApiRuntimeException;
 import com.podo.coinchatbot.app.util.DateTimeUtil;
-import org.apache.tomcat.jni.Local;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
-public class MessageContext {
+public class TargetAlarmEachTargetContext {
 
     private static ThreadLocal<Integer> sendMessageIndex = new ThreadLocal<>();
     private static ThreadLocal<Map<String, Object>> values = new ThreadLocal<>();
@@ -27,7 +22,6 @@ public class MessageContext {
 
     public static void removeAll() {
         values.set(new HashMap<>());
-        sendMessageIndex.set(0);
     }
 
     public static Map<String, Object> toLog() {
@@ -35,10 +29,10 @@ public class MessageContext {
     }
 
     public static void init() {
-        Map<String, Object> value = new HashMap<>();
-        value.put("id", "message-" + UUID.randomUUID());
-        value.put("type", "message");
-        values.set(value);
+        Map<String, Object> valuesInit = new HashMap<>();
+        valuesInit.put("id", "target-alarm-each-target" + UUID.randomUUID());
+        valuesInit.put("type", "target-alarm-each-target");
+        values.set(valuesInit);
         sendMessageIndex.set(0);
     }
 
@@ -47,8 +41,4 @@ public class MessageContext {
         sendMessageIndex.set(sendMessageIndex.get() + 1);
     }
 
-    public static void putException(Exception e) {
-        MessageContext.put("exceptionMessage", e.getMessage());
-        MessageContext.put("stackTrace", Arrays.stream(e.getStackTrace()).map(StackTraceElement::toString).collect(Collectors.joining("\n")));
-    }
 }

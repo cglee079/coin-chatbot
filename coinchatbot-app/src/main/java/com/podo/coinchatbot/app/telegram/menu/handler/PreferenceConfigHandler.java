@@ -42,17 +42,17 @@ public class PreferenceConfigHandler extends AbstractMenuHandler {
 
         switch (command) {
             case LANGUAGE_CONFIG: //언어 설정
-                sender.send(SendMessageVo.create(messageVo, explainLanguageConfig(), Keyboard.languageConfigKeyboard(language)));
+                sender.sendMessage(SendMessageVo.create(messageVo, explainLanguageConfig(), Keyboard.languageConfigKeyboard(language)));
                 menuStatus = Menu.PREFERENC_LANGUAGE;
                 break;
             case LOCALTIME_CONFIG: //시차 조절
                 LocalDateTime now = LocalDateTime.now();
-                sender.send(SendMessageVo.create(messageVo, explainLocalTimeConfig(now), Keyboard.defaultKeyboard()));
+                sender.sendMessage(SendMessageVo.create(messageVo, explainLocalTimeConfig(now), Keyboard.defaultKeyboard()));
                 menuStatus = Menu.PREFERENCE_LOCALTIME;
                 break;
             case OUT:
             default:
-                sender.send(SendMessageVo.create(messageVo, CommonMessage.toMain(language), Keyboard.mainKeyboard(language)));
+                sender.sendMessage(SendMessageVo.create(messageVo, CommonMessage.toMain(language), Keyboard.mainKeyboard(language)));
                 break;
         }
 

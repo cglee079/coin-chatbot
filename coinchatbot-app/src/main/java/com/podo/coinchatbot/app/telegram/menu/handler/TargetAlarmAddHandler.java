@@ -71,7 +71,7 @@ public class TargetAlarmAddHandler extends AbstractMenuHandler {
 
         message.append(CommonMessage.toMain(language));
 
-        sender.send(SendMessageVo.create(messageVo, message.toString(), Keyboard.mainKeyboard(language)));
+        sender.sendMessage(SendMessageVo.create(messageVo, message.toString(), Keyboard.mainKeyboard(language)));
 
         userService.updateMenuStatus(userId, Menu.MAIN);
     }

@@ -43,11 +43,11 @@ public class PreferenceLanguageConfigHandler extends AbstractMenuHandler {
             case SET_EN:
                 Language changedLanguage = command.getValue();
                 userService.updateLanguage(userId, changedLanguage);
-                sender.send(SendMessageVo.create(messageVo, messageLanguageConfigSuccess(changedLanguage) + CommonMessage.toMain(changedLanguage), Keyboard.mainKeyboard(changedLanguage)));
-                sender.send(SendMessageVo.create(messageVo, HelpMessage.help(changedLanguage, coin, coinMeta.getEnableMarkets()), Keyboard.mainKeyboard(changedLanguage)));
+                sender.sendMessage(SendMessageVo.create(messageVo, messageLanguageConfigSuccess(changedLanguage) + CommonMessage.toMain(changedLanguage), Keyboard.mainKeyboard(changedLanguage)));
+                sender.sendMessage(SendMessageVo.create(messageVo, HelpMessage.help(changedLanguage, coin, coinMeta.getEnableMarkets()), Keyboard.mainKeyboard(changedLanguage)));
                 break;
             default:
-                sender.send(SendMessageVo.create(messageVo, CommonMessage.toMain(language), Keyboard.mainKeyboard(language)));
+                sender.sendMessage(SendMessageVo.create(messageVo, CommonMessage.toMain(language), Keyboard.mainKeyboard(language)));
                 break;
         }
 

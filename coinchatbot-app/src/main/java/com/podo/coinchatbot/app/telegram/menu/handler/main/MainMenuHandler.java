@@ -62,101 +62,101 @@ public class MainMenuHandler extends AbstractMenuHandler {
 
         switch (MainCommand.from(language, messageText)) {
             case CURRENT_PRICE:
-                sender.send(SendMessageVo.create(messageVo, createMessageCurrentPrice(user, coin, coinMeta, now), Keyboard.mainKeyboard(language)));
+                sender.sendMessage(SendMessageVo.create(messageVo, createMessageCurrentPrice(user, coin, coinMeta, now), Keyboard.mainKeyboard(language)));
                 break;
 
             case MARKETS_PRICE:
-                sender.send(SendMessageVo.create(messageVo, createMessageEachMarketPrice(user, coin, coinMeta, now), Keyboard.mainKeyboard(language)));
+                sender.sendMessage(SendMessageVo.create(messageVo, createMessageEachMarketPrice(user, coin, coinMeta, now), Keyboard.mainKeyboard(language)));
                 break;
 
             case COMPARED_TO_BTC:
-                sender.send(SendMessageVo.create(messageVo, createMessageComparedToBTC(user, coin, coinMeta, now), Keyboard.mainKeyboard(language)));
+                sender.sendMessage(SendMessageVo.create(messageVo, createMessageComparedToBTC(user, coin, coinMeta, now), Keyboard.mainKeyboard(language)));
                 break;
 
             case CALCULATE: //손익금계산
-                sender.send(SendMessageVo.create(messageVo, createMessageCalculate(user, coin, coinMeta), Keyboard.mainKeyboard(language)));
+                sender.sendMessage(SendMessageVo.create(messageVo, createMessageCalculate(user, coin, coinMeta), Keyboard.mainKeyboard(language)));
                 break;
 
             case SHOW_SETTING: //설정정보
-                sender.send(SendMessageVo.create(messageVo, UserSettingMessage.get(user, coinMeta.getCoinFormatter()), Keyboard.mainKeyboard(language)));
-                sender.send(SendMessageVo.create(messageVo, MainCommonMessage.targetAlarms(language, market, userTargetAlarmService.findByUserId(userId), coinMeta.getCoinFormatter()), Keyboard.mainKeyboard(language)));
+                sender.sendMessage(SendMessageVo.create(messageVo, UserSettingMessage.get(user, coinMeta.getCoinFormatter()), Keyboard.mainKeyboard(language)));
+                sender.sendMessage(SendMessageVo.create(messageVo, MainCommonMessage.targetAlarms(language, market, userTargetAlarmService.findByUserId(userId), coinMeta.getCoinFormatter()), Keyboard.mainKeyboard(language)));
                 break;
 
             case COIN_LIST: //타 코인 알리미
-                sender.send(SendMessageVo.create(messageVo, MainCommonMessage.explainCoinList(language, coinInformationService.getAll()), Keyboard.mainKeyboard(language)));
+                sender.sendMessage(SendMessageVo.create(messageVo, MainCommonMessage.explainCoinList(language, coinInformationService.getAll()), Keyboard.mainKeyboard(language)));
                 break;
 
             case HELP: //도움말
-                sender.send(SendMessageVo.create(messageVo, HelpMessage.help(language, coin, coinMeta.getEnableMarkets()), Keyboard.mainKeyboard(language)));
-                sender.send(SendMessageVo.create(messageVo, HelpMessage.explainForForeigner(), Keyboard.mainKeyboard(language)));
+                sender.sendMessage(SendMessageVo.create(messageVo, HelpMessage.help(language, coin, coinMeta.getEnableMarkets()), Keyboard.mainKeyboard(language)));
+                sender.sendMessage(SendMessageVo.create(messageVo, HelpMessage.explainForForeigner(), Keyboard.mainKeyboard(language)));
                 break;
 
             case SPONSORING: //후원하기
-                sender.send(SendMessageVo.create(messageVo, MainCommonMessage.explainSupport(language), Keyboard.mainKeyboard(language)));
+                sender.sendMessage(SendMessageVo.create(messageVo, MainCommonMessage.explainSupport(language), Keyboard.mainKeyboard(language)));
                 break;
 
             case DAYLOOP_ALARM_CONFIG: // 일일 알림주기 설정
-                sender.send(SendMessageVo.create(messageVo, MainCommonMessage.explainDayloopConfig(language), Keyboard.setDayloopAlertKeyboard(language)));
+                sender.sendMessage(SendMessageVo.create(messageVo, MainCommonMessage.explainDayloopConfig(language), Keyboard.setDayloopAlertKeyboard(language)));
                 menuStatus = Menu.DAYLOOP_ALARM_CONFIG;
                 break;
 
             case TIMELOOP_ALARM_CONFIG: // 시간 알림 주기 설정
-                sender.send(SendMessageVo.create(messageVo, MainCommonMessage.explainTimeloopConfig(language), Keyboard.setTimeloopAlertKeyboard(language)));
+                sender.sendMessage(SendMessageVo.create(messageVo, MainCommonMessage.explainTimeloopConfig(language), Keyboard.setTimeloopAlertKeyboard(language)));
                 menuStatus = Menu.TIMELOOP_ALARM_CONFIG;
                 break;
 
             case MARKET_CONFIG: // 거래소 설정
-                sender.send(SendMessageVo.create(messageVo, MainCommonMessage.explainMarketConfig(language), Keyboard.setMarketKeyboard(language, coinMeta.getEnableMarkets())));
+                sender.sendMessage(SendMessageVo.create(messageVo, MainCommonMessage.explainMarketConfig(language), Keyboard.setMarketKeyboard(language, coinMeta.getEnableMarkets())));
                 menuStatus = Menu.MARKET_CONFIG;
                 break;
 
             case TARGET_ALARM_CONFIG: // 목표가 설정
-                sender.send(SendMessageVo.create(messageVo, MainCommonMessage.targetAlarms(language, market, userTargetAlarmService.findByUserId(userId), coinMeta.getCoinFormatter()), Keyboard.targetAlarmConfigKeyboard(language)));
+                sender.sendMessage(SendMessageVo.create(messageVo, MainCommonMessage.targetAlarms(language, market, userTargetAlarmService.findByUserId(userId), coinMeta.getCoinFormatter()), Keyboard.targetAlarmConfigKeyboard(language)));
                 menuStatus = Menu.TARGET_ALARM_CONFIG;
                 break;
 
             case INVESET_CONFIG: //투자금액 설정
-                sender.send(SendMessageVo.create(messageVo, MainCommonMessage.explainInvestConfig(language, market, coinMeta), Keyboard.defaultKeyboard()));
+                sender.sendMessage(SendMessageVo.create(messageVo, MainCommonMessage.explainInvestConfig(language, market, coinMeta), Keyboard.defaultKeyboard()));
                 menuStatus = Menu.INVEST_CONFIG;
                 break;
 
             case COINCOUNT_CONFIG: // 코인개수 설정
-                sender.send(SendMessageVo.create(messageVo, MainCommonMessage.explainCoinCountConfig(language, coinMeta), Keyboard.defaultKeyboard()));
+                sender.sendMessage(SendMessageVo.create(messageVo, MainCommonMessage.explainCoinCountConfig(language, coinMeta), Keyboard.defaultKeyboard()));
                 menuStatus = Menu.COIN_COUNT_CONFIG;
                 break;
 
             case SEND_MESSAGE: // 문의 건의
-                sender.send(SendMessageVo.create(messageVo, MainCommonMessage.explainSendSuggest(language), Keyboard.defaultKeyboard()));
+                sender.sendMessage(SendMessageVo.create(messageVo, MainCommonMessage.explainSendSuggest(language), Keyboard.defaultKeyboard()));
                 menuStatus = Menu.SUGGEST_MESSAGE;
                 break;
 
             case STOP_ALL_ALARAM: // 모든알림 중지
-                sender.send(SendMessageVo.create(messageVo, MainCommonMessage.explainStopAllAlert(language), Keyboard.confirmStopKeyboard(language)));
+                sender.sendMessage(SendMessageVo.create(messageVo, MainCommonMessage.explainStopAllAlert(language), Keyboard.confirmStopKeyboard(language)));
                 menuStatus = Menu.STOP_ALL_ALARM;
                 break;
 
             case HAPPY_LINE: // 행복회로
                 if (user.getInvest() == null) {
-                    sender.send(SendMessageVo.create(messageVo, MainCommonMessage.pleaseConfigInvest(language), Keyboard.mainKeyboard(language)));
+                    sender.sendMessage(SendMessageVo.create(messageVo, MainCommonMessage.pleaseConfigInvest(language), Keyboard.mainKeyboard(language)));
                     break;
                 }
 
                 if (user.getCoinCount() == null) {
-                    sender.send(SendMessageVo.create(messageVo, MainCommonMessage.pleaseConfigCoinCount(language), Keyboard.mainKeyboard(language)));
+                    sender.sendMessage(SendMessageVo.create(messageVo, MainCommonMessage.pleaseConfigCoinCount(language), Keyboard.mainKeyboard(language)));
                     break;
                 }
 
-                sender.send(SendMessageVo.create(messageVo, MainCommonMessage.explainHappyLine(language, market, coinMeta), Keyboard.defaultKeyboard()));
+                sender.sendMessage(SendMessageVo.create(messageVo, MainCommonMessage.explainHappyLine(language, market, coinMeta), Keyboard.defaultKeyboard()));
                 menuStatus = Menu.HAPPY_COIN_PRICE;
                 break;
 
             case PREFERENCE:  // 설정
-                sender.send(SendMessageVo.create(messageVo, "Set Preference", Keyboard.preferenceKeyboard(language)));
+                sender.sendMessage(SendMessageVo.create(messageVo, "Set Preference", Keyboard.preferenceKeyboard(language)));
                 menuStatus = Menu.PREFERENCE;
                 break;
 
             default:
-                sender.send(SendMessageVo.create(messageVo, createMessageCurrentPrice(user, coin, coinMeta, now), Keyboard.mainKeyboard(language)));
+                sender.sendMessage(SendMessageVo.create(messageVo, createMessageCurrentPrice(user, coin, coinMeta, now), Keyboard.mainKeyboard(language)));
                 break;
 
         }

@@ -14,7 +14,7 @@ public class ExchangeApiClient {
     public static final String URL = "http://data.fixer.io/api/latest?access_key=f8e8de4219acbfc156083b7a039acf28";
 
     public BigDecimal usdToKrw() {
-        ApiCallResult apiCallResult = ApiCaller.callApi(URL);
+        ApiCallResult apiCallResult = ApiCaller.callGetApi(URL);
 
         if (!apiCallResult.isSuccess()) {
             throw new ExchangeApiCallException(apiCallResult.getErrorMessage());

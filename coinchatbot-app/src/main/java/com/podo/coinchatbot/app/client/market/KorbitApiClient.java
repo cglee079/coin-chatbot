@@ -24,7 +24,7 @@ public class KorbitApiClient extends MarketApiClient {
     public CoinResponse getCoin(Coin coin) {
         String param = getParameterValue(coin);
 
-        ApiCallResult apiCallResult = ApiCaller.callApi(URL + param);
+        ApiCallResult apiCallResult = ApiCaller.callGetApi(URL + param);
 
         if (!apiCallResult.isSuccess()) {
             return CoinResponse.error(apiCallResult.getErrorMessage());

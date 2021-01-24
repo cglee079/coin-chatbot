@@ -50,7 +50,7 @@ public class TargetAlarmConfigHandler extends AbstractMenuHandler {
         Menu menuStatus = Menu.MAIN;
         switch (command) {
             case ADD:
-                sender.send(SendMessageVo.create(messageVo, explainTargetAdd(language, market, coinMeta), Keyboard.defaultKeyboard()));
+                sender.sendMessage(SendMessageVo.create(messageVo, explainTargetAdd(language, market, coinMeta), Keyboard.defaultKeyboard()));
                 menuStatus = Menu.TARGET_ALARM_ADD;
                 break;
             case DEL:
@@ -59,12 +59,12 @@ public class TargetAlarmConfigHandler extends AbstractMenuHandler {
                         .map(t -> coinFormatter.toMoneyStr(t.getTargetPrice(), market) + " " + t.getTargetFocus().getStr(language))
                         .collect(Collectors.toList());
 
-                sender.send(SendMessageVo.create(messageVo, explainTargetDel(language), Keyboard.deleteTargetKeyboard(targetDeleteCommandText, language)));
+                sender.sendMessage(SendMessageVo.create(messageVo, explainTargetDel(language), Keyboard.deleteTargetKeyboard(targetDeleteCommandText, language)));
                 menuStatus = Menu.TARGET_ALARM_DELETE;
                 break;
             case OUT:
             default:
-                sender.send(SendMessageVo.create(messageVo, CommonMessage.toMain(language), Keyboard.mainKeyboard(language)));
+                sender.sendMessage(SendMessageVo.create(messageVo, CommonMessage.toMain(language), Keyboard.mainKeyboard(language)));
                 break;
         }
 

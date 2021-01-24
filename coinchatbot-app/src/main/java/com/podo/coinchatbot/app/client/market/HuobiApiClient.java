@@ -25,7 +25,7 @@ public class HuobiApiClient extends MarketApiClient {
     public CoinResponse getCoin(Coin coin) {
         String parameterValue = getParameterValue(coin);
 
-        ApiCallResult apiCallResult = ApiCaller.callApi(URL + parameterValue);
+        ApiCallResult apiCallResult = ApiCaller.callGetApi(URL + parameterValue);
         if (!apiCallResult.isSuccess()) {
             return CoinResponse.error(apiCallResult.getErrorMessage());
         }
