@@ -1,15 +1,17 @@
-spring.application.name: coinchatbot
+
 ---
 spring.profiles: dev
 spring.profiles.include: app-dev, coins-dev
+spring.application.name: coinchatbot-dev
 
 ---
 
 spring.profiles: test
 spring.profiles.include: coins-test
-
+spring.application.name: coinchatbot-test
 ---
 
 spring.profiles: prod
-spring.profiles.include: app-prod, coins-prod
+spring.profiles.include: app, coins
+spring.application.name: coinchatbot-prod
 spring.cloud.config.uri: http://192.168.50.2:8888

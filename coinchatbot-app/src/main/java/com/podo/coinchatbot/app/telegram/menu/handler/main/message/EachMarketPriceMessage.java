@@ -90,8 +90,9 @@ public class EachMarketPriceMessage {
                     message.append(coinFormatter.toMoneyStr(marketToCurrentPrice.get(market), marketUSD));
                     message.append("  [" + coinFormatter.toMoneyStr(marketToCurrentPrice.get(market).multiply(exchangeRate), marketKRW) + "]");
                 }
+
+                message.append("\n");
             }
-            message.append("\n");
         }
 
 
