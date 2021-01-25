@@ -25,7 +25,7 @@ public class TimelyCoinPriceService {
 
     @Transactional(readOnly = true)
     public TimelyCoinPriceDto getByCoinAndMarketAndDateTime(Coin coin, Market market, LocalDateTime dateTime) {
-        LocalDateTime dateTimeTruncatedMinute = dateTime.truncatedTo(ChronoUnit.MINUTES);
+        LocalDateTime dateTimeTruncatedMinute = dateTime.truncatedTo(ChronoUnit.HOURS);
         Optional<TimelyCoinPrice> timelyCoinPriceOptional = timelyCoinPriceRepository.findByCoinAndMarketAndDateTime(coin, market, dateTimeTruncatedMinute);
 
         return timelyCoinPriceOptional
@@ -40,7 +40,7 @@ public class TimelyCoinPriceService {
 
     @Transactional
     public void insertByCopyBeforeHour(Coin coin, Market market, LocalDateTime dateTime, String errorMessage) {
-        LocalDateTime dateTimeTruncatedMinute = dateTime.truncatedTo(ChronoUnit.MINUTES);
+        LocalDateTime dateTimeTruncatedMinute = dateTime.truncatedTo(ChronoUnit.HOURS);
         LocalDateTime beforeDateTime = dateTime.minusHours(1);
         Optional<TimelyCoinPrice> beforeHourTimelyCoinPriceOptional = timelyCoinPriceRepository.findByCoinAndMarketAndDateTime(coin, market, beforeDateTime);
 

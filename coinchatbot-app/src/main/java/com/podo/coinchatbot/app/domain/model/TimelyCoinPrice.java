@@ -55,7 +55,7 @@ public class TimelyCoinPrice {
                            BigDecimal lowPrice, BigDecimal lastPrice, BigDecimal volume,
                            TimelyCoinPriceStatus status, String additionalInfo) {
         this.coin = coin;
-        this.dateTime = dateTime.truncatedTo(ChronoUnit.MINUTES);
+        this.dateTime = dateTime.truncatedTo(ChronoUnit.HOURS);
         this.market = market;
         this.highPrice = highPrice;
         this.lowPrice = lowPrice;
