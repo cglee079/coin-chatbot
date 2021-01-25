@@ -1,4 +1,4 @@
-package com.podo.coinchatbot.app.config;
+package com.podo.coinchatbot.app.telegram;
 
 
 import com.podo.coinchatbot.app.telegram.TelegramMessageReceiver;
@@ -30,7 +30,6 @@ public class TelegramAppConfig {
         for (TelegramMessageReceiver telegramMessageReceiver : telegramMessageReceivers) {
             telegramBotsApi.registerBot(telegramMessageReceiver);
         }
-
 
         return telegramBotsApi;
     }

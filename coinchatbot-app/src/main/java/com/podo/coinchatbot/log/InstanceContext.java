@@ -1,30 +1,24 @@
-package com.podo.coinchatbot.app.job;
+package com.podo.coinchatbot.log;
 
-import com.podo.coinchatbot.app.client.market.MarketApiClient;
 import com.podo.coinchatbot.app.util.DateTimeUtil;
-import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
+import lombok.Getter;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-@Component
-public class MarketRefreshContext {
+@Getter
+public class InstanceContext {
 
     private Map<String, Object> values = new HashMap<>();
     private Integer exceptionIndex = 0;
 
-    public MarketRefreshContext() {
-        values.put("id", "market-refresh-job-" + UUID.randomUUID());
-        values.put("type", "market-refresh-job");
+    public InstanceContext(String type) {
+        values.put("id", type + "-" + UUID.randomUUID());
+        values.put("type", type);
     }
 
     public Map<String, Object> toLog() {

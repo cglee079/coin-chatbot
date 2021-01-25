@@ -1,6 +1,7 @@
 package com.podo.coinchatbot.app.job;
 
 import com.podo.coinchatbot.app.client.market.MarketApiClient;
+import com.podo.coinchatbot.log.InstanceContext;
 import lombok.RequiredArgsConstructor;
 import net.logstash.logback.argument.StructuredArguments;
 import org.slf4j.Logger;
@@ -21,7 +22,7 @@ public class MarketRefreshJob implements Job {
     @Scheduled(cron = "0 0/1 * * * *")
     @Override
     public void run() {
-        MarketRefreshContext marketRefreshContext = new MarketRefreshContext();
+        InstanceContext marketRefreshContext = new InstanceContext("market-refresh-job");
         marketRefreshContext.putDateTime("jobStartAt", LocalDateTime.now());
 
         try {

@@ -1,4 +1,4 @@
-package com.podo.coinchatbot.app.job;
+package com.podo.coinchatbot.app.job.alarm.targetalarm;
 
 
 import com.podo.coinchatbot.app.domain.dto.UserDto;
@@ -12,6 +12,7 @@ import com.podo.coinchatbot.app.telegram.model.MessageVo;
 import com.podo.coinchatbot.app.telegram.model.SendMessageVo;
 import com.podo.coinchatbot.core.Language;
 import com.podo.coinchatbot.core.Market;
+import com.podo.coinchatbot.log.ThreadLocalContext;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,7 +21,7 @@ import java.math.BigDecimal;
 
 @Component
 @RequiredArgsConstructor
-public class TargetAlarmEachTarget {
+public class TargetAlarmEachTargetExcecutor {
 
     private final UserTargetAlarmService userTargetAlarmService;
     private final UserService userService;
@@ -28,22 +29,22 @@ public class TargetAlarmEachTarget {
     @Transactional
     public void alarmEachTarget(Market market, BigDecimal currentPrice, CoinFormatter coinFormatter, TelegramMessageSender telegramMessageSender, UserTargetAlarmDto target) {
         BigDecimal targetPrice = target.getTargetPrice();
-        UserDto user = userService.findById(target.getUserId());
+        UserDto user = userService.getByUserId(target.getUserId());
         Integer telegramId = user.getTelegramId();
         Long chatId = user.getChatId();
         Language language = user.getLanguage();
 
-        TargetAlarmEachTargetContext.put("telegramId", telegramId.toString());
-        TargetAlarmEachTargetContext.put("chatId", chatId.toString());
-        TargetAlarmEachTargetContext.put("targetFocus", target.getTargetFocus());
-        TargetAlarmEachTargetContext.put("targetPrice", targetPrice);
-        TargetAlarmEachTargetContext.put("currentPrice", currentPrice);
+        ThreadLocalContext.put("telegramId", telegramId.toString());
+        ThreadLocalContext.put("chatId", chatId.toString());
+        ThreadLocalContext.put("targetFocus", target.getTargetFocus());
+        ThreadLocalContext.put("targetPrice", targetPrice);
+        ThreadLocalContext.put("currentPrice", currentPrice);
 
         String message = msgTargetPriceNotify(currentPrice, targetPrice, market, language, coinFormatter);
-        telegramMessageSender.sendTargetAlarm(SendMessageVo.create(new MessageVo(telegramId, chatId), message, null));
+        telegramMessageSender.sendAlarm(SendMessageVo.create(new MessageVo(telegramId, chatId), message, null));
 
         userTargetAlarmService.deleteById(target.getId());
-        telegramMessageSender.sendTargetAlarm(SendMessageVo.create(new MessageVo(telegramId, chatId), msgTargetPriceDeleted(language), null));
+        telegramMessageSender.sendAlarm(SendMessageVo.create(new MessageVo(telegramId, chatId), msgTargetPriceDeleted(language), null));
     }
 
     private String msgTargetPriceNotify(BigDecimal currentValue, BigDecimal targetPrice, Market market, Language language, CoinFormatter coinFormatter) {

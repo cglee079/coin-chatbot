@@ -1,6 +1,6 @@
 package com.podo.coinchatbot.app.telegram;
 
-import com.podo.coinchatbot.app.job.TargetAlarmEachTargetContext;
+import com.podo.coinchatbot.log.ThreadLocalContext;
 import com.podo.coinchatbot.core.Coin;
 import com.podo.coinchatbot.app.telegram.exception.TelegramApiRuntimeException;
 import com.podo.coinchatbot.app.telegram.model.SendMessageVo;
@@ -12,17 +12,11 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 public class TelegramMessageSender extends DefaultAbsSender {
 
-    private final Coin coin;
     private final String botToken;
 
-    public TelegramMessageSender(Coin coin, String botToken) {
+    public TelegramMessageSender(String botToken) {
         super(ApiContext.getInstance(DefaultBotOptions.class));
-        this.coin = coin;
         this.botToken = botToken;
-    }
-
-    public Coin getCoin() {
-        return coin;
     }
 
     @Override
@@ -31,12 +25,12 @@ public class TelegramMessageSender extends DefaultAbsSender {
     }
 
     public void sendMessage(SendMessageVo sendmessageVo) {
-        MessageContext.putSendMessage(sendmessageVo.getMessage());
+        ThreadLocalContext.putSendMessage(sendmessageVo.getMessage());
         send(sendmessageVo);
     }
 
-    public void sendTargetAlarm(SendMessageVo sendMessageVo){
-        TargetAlarmEachTargetContext.putSendMessage(sendMessageVo.getMessage());
+    public void sendAlarm(SendMessageVo sendMessageVo){
+        ThreadLocalContext.putSendMessage(sendMessageVo.getMessage());
         send(sendMessageVo);
     }
 
@@ -48,7 +42,6 @@ public class TelegramMessageSender extends DefaultAbsSender {
         sendMessage.enableHtml(true);
         sendMessage.enableMarkdown(false);
 
-
         try {
             this.execute(sendMessage);
         } catch (TelegramApiException e) {
@@ -56,50 +49,4 @@ public class TelegramMessageSender extends DefaultAbsSender {
         }
     }
 
-//
-//    /* 목표가 알림 */
-
-//
-//    /* 시간 알림 */
-//    public void sendTimelyMessage(List<ClientVo> clients, Market marketId, TimelyInfoVo coinCurrent, TimelyInfoVo coinBefore) {
-//        ClientVo client = null;
-//
-//        JSONObject coinCurrentMoney = null;
-//        JSONObject coinBeforeMoney = null;
-//        if (inBtcs.get(marketId)) {
-//            coinCurrentMoney = coinManager.getMoney(coinCurrent, marketId);
-//            coinBeforeMoney = coinManager.getMoney(coinBefore, marketId);
-//        }
-//
-//        int clientLength = clients.size();
-//        for (int i = 0; i < clientLength; i++) {
-//            client = clients.get(i);
-//            String msg = msgMaker.msgSendTimelyMessage(client, coinCurrent, coinBefore, coinCurrentMoney, coinBeforeMoney);
-//            sendMessage(client.getUserId(), null, msg, null);
-//        }
-//    }
-//
-//    /* 일일 알림 */
-//    public void sendDailyMessage(List<ClientVo> clients, Market marketId, TimelyInfoVo coinCurrent, TimelyInfoVo coinBefore) {
-//        ClientVo client = null;
-//        int clientLength = clients.size();
-//
-//        JSONObject coinCurrentMoney = null;
-//        JSONObject coinBeforeMoney = null;
-//        if (inBtcs.get(marketId)) {
-//            coinCurrentMoney = coinManager.getMoney(coinCurrent, marketId);
-//            coinBeforeMoney = coinManager.getMoney(coinBefore, marketId);
-//        }
-//
-//        String msg = null;
-//        for (int i = 0; i < clientLength; i++) {
-//            client = clients.get(i);
-//            msg = msgMaker.msgSendDailyMessage(client, coinCurrent, coinBefore, coinCurrentMoney, coinBeforeMoney);
-//            sendMessage(client.getUserId(), null, msg, null);
-//
-//            if (client.getCoinCnt() != null && client.getInvest() != null) {
-//                sendMessage(client.getUserId(), null, calcResult(client, coinCurrent.getLast()), null);
-//            }
-//        }
-//    }
 }

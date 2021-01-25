@@ -17,6 +17,7 @@ import com.podo.coinchatbot.app.domain.dto.UserDto;
 import com.podo.coinchatbot.app.model.Menu;
 import com.podo.coinchatbot.app.telegram.model.MessageVo;
 import com.podo.coinchatbot.app.telegram.model.SendMessageVo;
+import com.podo.coinchatbot.log.ThreadLocalContext;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.logstash.logback.argument.StructuredArguments;
@@ -56,30 +57,29 @@ public class TelegramMessageReceiverHandler {
         UserDto user = userService.getOrNull(coin, chatId);
 
         try {
-            MessageContext.init();
             handle(message);
         } catch (TelegramApiRuntimeException e) {
-            MessageContext.putException(e);
+            ThreadLocalContext.putException(e);
             if (user != null) {
                 telegramMessageSender.sendMessage(SendMessageVo.create(new MessageVo(telegramId, chatId, messageId), e.getMessage() + CommonMessage.toMain(user.getLanguage()), Keyboard.mainKeyboard(user.getLanguage())));
                 userService.increaseErrorCount(user.getId());
                 userService.updateMenuStatus(user.getId(), Menu.MAIN);
             }
         } catch (UserInvalidInputException e) {
-            MessageContext.putException(e);
+            ThreadLocalContext.putException(e);
             if (user != null) {
                 telegramMessageSender.sendMessage(SendMessageVo.create(new MessageVo(telegramId, chatId, messageId), e.getMessage() + CommonMessage.toMain(user.getLanguage()), Keyboard.mainKeyboard(user.getLanguage())));
                 userService.updateMenuStatus(user.getId(), Menu.MAIN);
             }
         } catch (Exception e) {
-            MessageContext.putException(e);
+            ThreadLocalContext.putException(e);
             if (user != null) {
                 telegramMessageSender.sendMessage(SendMessageVo.create(new MessageVo(telegramId, chatId, messageId), e.getMessage() + CommonMessage.warningWaitSecond(user.getLanguage()), Keyboard.mainKeyboard(user.getLanguage())));
                 userService.updateMenuStatus(user.getId(), Menu.MAIN);
             }
         } finally {
-            LOGGER.info("", StructuredArguments.value("context", MessageContext.toLog()));
-            MessageContext.removeAll();
+            LOGGER.info("", StructuredArguments.value("context", ThreadLocalContext.toLog()));
+            ThreadLocalContext.removeAll();
         }
     }
 
@@ -93,11 +93,11 @@ public class TelegramMessageReceiverHandler {
         final String messageText = message.getText();
         final LocalDateTime messageReceivedAt = LocalDateTime.now();
 
-        MessageContext.put("telegramId", telegramId.toString());
-        MessageContext.put("chatId", chatId.toString());
-        MessageContext.put("messageId", messageId.toString());
-        MessageContext.put("messageText", messageText);
-        MessageContext.putDateTime("messageReceivedAt", messageReceivedAt);
+        ThreadLocalContext.put("telegramId", telegramId.toString());
+        ThreadLocalContext.put("chatId", chatId.toString());
+        ThreadLocalContext.put("messageId", messageId.toString());
+        ThreadLocalContext.put("messageText", messageText);
+        ThreadLocalContext.putDateTime("messageReceivedAt", messageReceivedAt);
 
         final MessageVo messageVo = new MessageVo(telegramId, chatId, messageId);
 

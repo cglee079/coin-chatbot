@@ -1,15 +1,18 @@
-package com.podo.coinchatbot.app.job;
+package com.podo.coinchatbot.log;
 
 import com.podo.coinchatbot.app.util.DateTimeUtil;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
-public class TargetAlarmEachTargetContext {
+public class ThreadLocalContext {
 
     private static ThreadLocal<Integer> sendMessageIndex = new ThreadLocal<>();
+    private static ThreadLocal<Integer> exceptionIndex = new ThreadLocal<>();
     private static ThreadLocal<Map<String, Object>> values = new ThreadLocal<>();
 
     public static void put(String key, Object value) {
@@ -28,12 +31,19 @@ public class TargetAlarmEachTargetContext {
         return values.get();
     }
 
-    public static void init() {
+    public static void init(String type) {
         Map<String, Object> valuesInit = new HashMap<>();
-        valuesInit.put("id", "target-alarm-each-target" + UUID.randomUUID());
-        valuesInit.put("type", "target-alarm-each-target");
+        valuesInit.put("id", type + "-" + UUID.randomUUID());
+        valuesInit.put("type", type);
         values.set(valuesInit);
+        exceptionIndex.set(0);
         sendMessageIndex.set(0);
+    }
+
+    public static void putException(Exception e) {
+        values.get().put("exceptionMessage-" + exceptionIndex.get(), e.getMessage());
+        values.get().put("stackTrace-" + exceptionIndex.get(), Arrays.stream(e.getStackTrace()).map(StackTraceElement::toString).collect(Collectors.joining("\n")));
+        exceptionIndex.set(exceptionIndex.get() + 1);
     }
 
     public static void putSendMessage(String message) {

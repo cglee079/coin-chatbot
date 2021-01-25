@@ -158,12 +158,12 @@ public class CoinFormatter {
 		return df.format(usd);
 	}
 
-	public String toVolumeStr(long i) {
+	public String toVolumeStr(BigDecimal i) {
 		DecimalFormat df = new DecimalFormat("#,###");
 		return df.format(i);
 	}
 
-	public String toSignVolumeStr(long i) {
+	public String toSignVolumeStr(BigDecimal i) {
 		DecimalFormat df = new DecimalFormat("#,###");
 		df.setPositivePrefix("+");
 		df.setNegativePrefix("-");

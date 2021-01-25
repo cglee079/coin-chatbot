@@ -1,6 +1,7 @@
 package com.podo.coinchatbot.app.client;
 
 import com.podo.coinchatbot.app.client.model.ApiCallResult;
+import com.podo.coinchatbot.log.InstanceContext;
 import lombok.experimental.UtilityClass;
 import net.logstash.logback.argument.StructuredArguments;
 import org.glassfish.grizzly.http.Method;
@@ -24,7 +25,7 @@ public class ApiCaller {
     public static final String USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36";
 
     public static ApiCallResult callGetApi(String url) {
-        ClientContext clientContext = new ClientContext();
+        InstanceContext clientContext = new InstanceContext("api-client");
 
         HttpMethod method = HttpMethod.GET;
         clientContext.put("request", getRequest(url, method));

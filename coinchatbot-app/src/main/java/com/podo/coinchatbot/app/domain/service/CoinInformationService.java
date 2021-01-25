@@ -1,8 +1,8 @@
 package com.podo.coinchatbot.app.domain.service;
 
-import com.podo.coinchatbot.core.Coin;
-import com.podo.coinchatbot.app.config.CoinProperties;
+import com.podo.coinchatbot.app.property.CoinConfig;
 import com.podo.coinchatbot.app.domain.dto.CoinInformationDto;
+import com.podo.coinchatbot.app.property.CoinConfigs;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,11 +13,11 @@ public class CoinInformationService {
 
     private final List<CoinInformationDto> coinInformations;
 
-    public CoinInformationService(CoinProperties coinProperties) {
-        coinInformations = coinProperties.getProperties()
+    public CoinInformationService(CoinConfigs coinConfigs) {
+        coinInformations = coinConfigs.getProperties()
                 .stream()
                 .filter(coinProperty -> coinProperty.getBotConfig().getEnabled())
-                .map(property -> new CoinInformationDto(Coin.valueOf(property.getId()), property.getBotConfig().getUrl()))
+                .map(property -> new CoinInformationDto(property.getCoin(), property.getBotConfig().getUrl()))
                 .collect(Collectors.toList());
     }
 

@@ -1,5 +1,6 @@
 package com.podo.coinchatbot.app.telegram;
 
+import com.podo.coinchatbot.log.ThreadLocalContext;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -30,6 +31,7 @@ public class TelegramMessageReceiver extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
        executorService.submit(() ->{
+           ThreadLocalContext.init("message-receive");
            telegramMessageReceiverHandler.handle(update);
        });
     }

@@ -1,6 +1,7 @@
 package com.podo.coinchatbot.app.util;
 
 import lombok.experimental.UtilityClass;
+import org.jetbrains.annotations.NotNull;
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -18,8 +19,12 @@ public class DateTimeUtil {
     private final static DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     public static String toDateTimeString(LocalDateTime now, long timeDifference) {
-        LocalDateTime localDateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(dateTimeToLong(now) + timeDifference), TimeZone.getDefault().toZoneId());
+        LocalDateTime localDateTime = longToLocalDateTime(dateTimeToLong(now) + timeDifference);
         return localDateTime.format(DATETIME_FORMATTER);
+    }
+
+    public static LocalDateTime longToLocalDateTime(Long longValue) {
+        return LocalDateTime.ofInstant(Instant.ofEpochMilli(longValue), TimeZone.getDefault().toZoneId());
     }
 
     public static String toDateTimeString(LocalDateTime dateTime) {
