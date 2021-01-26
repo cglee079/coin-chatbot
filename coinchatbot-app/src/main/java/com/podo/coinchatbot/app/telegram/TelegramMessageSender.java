@@ -45,7 +45,7 @@ public class TelegramMessageSender extends DefaultAbsSender {
         try {
             this.execute(sendMessage);
         } catch (TelegramApiException e) {
-            throw new TelegramApiRuntimeException(sendmessageVo.getChatId(), sendmessageVo.getMessage());
+            throw new TelegramApiRuntimeException(e, sendmessageVo.getChatId(), sendmessageVo.getMessage());
         }
     }
 

@@ -61,7 +61,6 @@ public class TelegramMessageReceiverHandler {
         } catch (TelegramApiRuntimeException e) {
             ThreadLocalContext.putException(e);
             if (user != null) {
-                telegramMessageSender.sendMessage(SendMessageVo.create(new MessageVo(telegramId, chatId, messageId), e.getMessage() + CommonMessage.toMain(user.getLanguage()), Keyboard.mainKeyboard(user.getLanguage())));
                 userService.increaseErrorCount(user.getId());
                 userService.updateMenuStatus(user.getId(), Menu.MAIN);
             }
