@@ -45,7 +45,7 @@ public class UserService {
                 .messageSendAt(messageSendAt)
                 .language(Language.KR)
                 .errorCount(0)
-                .userStatus(UserStatus.LIVE)
+                .userStatus(UserStatus.ALIVE)
                 .build();
 
         userRepository.save(user);

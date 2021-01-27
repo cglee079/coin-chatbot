@@ -16,7 +16,7 @@ public class TelegramMessageReceiver extends TelegramLongPollingBot {
     private final String botToken;
     private final String botUsername;
     private final TelegramMessageReceiverHandler telegramMessageReceiverHandler;
-    private final ExecutorService executorService = Executors.newFixedThreadPool(3);
+    private final ExecutorService executorService = Executors.newFixedThreadPool(1);
 
     @Override
     public String getBotToken() {
