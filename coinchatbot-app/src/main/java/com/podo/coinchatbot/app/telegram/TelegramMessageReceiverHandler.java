@@ -50,6 +50,8 @@ public class TelegramMessageReceiverHandler {
 
     @Transactional
     public void handle(Update update) {
+        ThreadLocalContext.put("coin", coin);
+        
         Message message = getMessage(update);
         Integer telegramId = message.getFrom().getId();
         Long chatId = message.getChatId();
