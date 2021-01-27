@@ -73,7 +73,7 @@ public class TargetAlarmEachCoinExecutor {
 
         executorService.submit(() -> {
             try {
-                ThreadLocalContext.init("target-alarm-each-target");
+                ThreadLocalContext.init("target-alarm");
                 ThreadLocalContext.put("jobId", instanceContext.getId());
                 ThreadLocalContext.put("coin", coin);
                 targetAlarmEachTargetExcecutor.alarmEachTarget(market, currentPrice, coinFormatter, telegramMessageSender, target);

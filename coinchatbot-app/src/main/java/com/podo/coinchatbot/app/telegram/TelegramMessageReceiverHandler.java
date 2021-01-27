@@ -51,7 +51,7 @@ public class TelegramMessageReceiverHandler {
     @Transactional
     public void handle(Update update) {
         ThreadLocalContext.put("coin", coin);
-        
+
         Message message = getMessage(update);
         Integer telegramId = message.getFrom().getId();
         Long chatId = message.getChatId();
@@ -111,6 +111,8 @@ public class TelegramMessageReceiverHandler {
             telegramMessageSender.sendMessage(SendMessageVo.create(messageVo, HelpMessage.explainForForeigner(), Keyboard.mainKeyboard(KR)));
             return;
         }
+
+        ThreadLocalContext.put("language", user.getLanguage());
 
         if (messageText.equals("/start")) {
             Language language = user.getLanguage();
