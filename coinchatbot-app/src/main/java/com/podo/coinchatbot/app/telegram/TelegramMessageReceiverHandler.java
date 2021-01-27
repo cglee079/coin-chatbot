@@ -67,13 +67,14 @@ public class TelegramMessageReceiverHandler {
         } catch (UserInvalidInputException e) {
             ThreadLocalContext.putException(e);
             if (user != null) {
-                telegramMessageSender.sendMessage(SendMessageVo.create(new MessageVo(telegramId, chatId, messageId), e.getMessage() + CommonMessage.toMain(user.getLanguage()), Keyboard.mainKeyboard(user.getLanguage())));
+                telegramMessageSender.sendMessage(SendMessageVo.create(new MessageVo(telegramId, chatId, messageId), e.getMessage() + "\n" + CommonMessage.toMain(user.getLanguage()), Keyboard.mainKeyboard(user.getLanguage())));
                 userService.updateMenuStatus(user.getId(), Menu.MAIN);
             }
         } catch (Exception e) {
             ThreadLocalContext.putException(e);
             if (user != null) {
-                telegramMessageSender.sendMessage(SendMessageVo.create(new MessageVo(telegramId, chatId, messageId), e.getMessage() + CommonMessage.warningWaitSecond(user.getLanguage()), Keyboard.mainKeyboard(user.getLanguage())));
+                String errorMessage = "id : " + ThreadLocalContext.id() + "\n" + "죄송합니다, 서버 에러가 발생하였습니다.\n" + CommonMessage.warningWaitSecond(user.getLanguage());
+                telegramMessageSender.sendMessage(SendMessageVo.create(new MessageVo(telegramId, chatId, messageId), errorMessage, Keyboard.mainKeyboard(user.getLanguage())));
                 userService.updateMenuStatus(user.getId(), Menu.MAIN);
             }
         } finally {

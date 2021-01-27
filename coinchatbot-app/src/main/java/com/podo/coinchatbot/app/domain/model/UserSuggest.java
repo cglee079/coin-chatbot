@@ -24,7 +24,7 @@ public class UserSuggest {
 
     private Long userId;
 
-    private String suggestTest;
+    private String suggestText;
 
     @CreatedDate
     private LocalDateTime createAt;
@@ -32,8 +32,8 @@ public class UserSuggest {
     @LastModifiedDate
     private LocalDateTime updateAt;
 
-    public UserSuggest(Long userId, String suggestTest) {
+    public UserSuggest(Long userId, String suggestText) {
         this.userId = userId;
-        this.suggestTest = suggestTest;
+        this.suggestText = suggestText;
     }
 }

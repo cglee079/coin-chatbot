@@ -51,4 +51,7 @@ public class ThreadLocalContext {
         sendMessageIndex.set(sendMessageIndex.get() + 1);
     }
 
+    public static String id() {
+        return String.valueOf(values.get().get("id"));
+    }
 }
