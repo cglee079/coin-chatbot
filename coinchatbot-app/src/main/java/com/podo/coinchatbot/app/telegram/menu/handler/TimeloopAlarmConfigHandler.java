@@ -35,18 +35,18 @@ public class TimeloopAlarmConfigHandler extends AbstractMenuHandler {
         StringBuilder message = new StringBuilder();
 
         TimeloopAlarmCommand command = TimeloopAlarmCommand.from(language, messageText);
+        Integer commandValue = command.getValue();
 
         if (command.equals(TimeloopAlarmCommand.OUT)) {
             message.append(messageTimeloopOut(language));
-        }
-
-        userService.updateTimeLoop(userId, command.getValue());
-
-        if (command.equals(TimeloopAlarmCommand.OFF)) {
+        } else if (command.equals(TimeloopAlarmCommand.OFF)) {
+            userService.updateTimeLoop(userId, commandValue);
             message.append(messageTimeloopAlarmStop(language));
         } else {
-            message.append(messageTimeloopAlarmConfigSuccess(language, command.getValue()));
+            userService.updateTimeLoop(userId, commandValue);
+            message.append(messageTimeloopAlarmConfigSuccess(language, commandValue));
         }
+
 
         message.append(CommonMessage.toMain(language));
 

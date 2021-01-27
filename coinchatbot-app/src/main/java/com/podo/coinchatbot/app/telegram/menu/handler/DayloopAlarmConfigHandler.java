@@ -35,18 +35,18 @@ public class DayloopAlarmConfigHandler extends AbstractMenuHandler {
         StringBuilder message = new StringBuilder();
 
         DayloopAlarmCommand command = DayloopAlarmCommand.from(language, messageText);
+        Integer commandValue = command.getValue();
 
         if (command.equals(DayloopAlarmCommand.OUT)) {
             message.append(messageDayloopOut(language));
-        }
-
-        userService.updateDayLoop(userId, command.getValue());
-
-        if (command.equals(DayloopAlarmCommand.OFF)) {
+        } else if (command.equals(DayloopAlarmCommand.OFF)) {
+            userService.updateDayLoop(userId, commandValue);
             message.append(messageDayloopStop(language));
         } else {
-            message.append(messageDayloopConfig(language,  command.getValue()));
+            userService.updateDayLoop(userId, commandValue);
+            message.append(messageDayloopConfig(language, commandValue));
         }
+
 
         message.append(CommonMessage.toMain(language));
 
