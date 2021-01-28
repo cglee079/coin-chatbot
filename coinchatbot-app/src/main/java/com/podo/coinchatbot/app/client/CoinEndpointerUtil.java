@@ -15,7 +15,7 @@ public class CoinEndpointerUtil {
         CoinResponse coinResponse = coinEndpointer.getCoin(coin, market);
 
         if (!coinResponse.isSuccess()) {
-            throw new CoinApiCallException(coin);
+            throw new CoinApiCallException(coin, coinResponse.getErrorMessage());
         }
 
         return coinResponse;
@@ -25,7 +25,7 @@ public class CoinEndpointerUtil {
         CoinResponse coinResponse = coinEndpointer.getCoin(Coin.BTC, market);
 
         if(!coinResponse.isSuccess()){
-            throw new CoinApiCallException(Coin.BTC);
+            throw new CoinApiCallException(Coin.BTC, coinResponse.getErrorMessage());
         }
 
         return btc.multiply(coinResponse.getCurrentPrice());
