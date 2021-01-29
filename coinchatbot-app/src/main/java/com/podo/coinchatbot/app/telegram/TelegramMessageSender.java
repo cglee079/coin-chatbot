@@ -24,12 +24,12 @@ public class TelegramMessageSender extends DefaultAbsSender {
     }
 
     public void sendMessage(SendMessageVo sendmessageVo) {
-        ThreadLocalContext.putSendMessage(sendmessageVo.getMessage());
+        ThreadLocalContext.putTelegramMessageSend(sendmessageVo.getMessage());
         send(sendmessageVo);
     }
 
     public void sendAlarm(SendMessageVo sendMessageVo) {
-        ThreadLocalContext.putSendMessage(sendMessageVo.getMessage());
+        ThreadLocalContext.putTelegramMessageSend(sendMessageVo.getMessage());
         send(sendMessageVo);
     }
 

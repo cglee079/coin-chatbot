@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <springProperty scope="context" name="app" source="spring.application.name"/>
+    <springProperty scope="context" name="profile" source="spring.profiles"/>
 
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <!--        <encoder class="net.logstash.logback.encoder.LogstashEncoder">-->
@@ -12,9 +13,9 @@
     </appender>
 
     <appender name="LOG_STASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
-        <destination>192.168.50.2:15000</destination>
+        <destination>220.88.46.130:15000</destination>
         <encoder class="net.logstash.logback.encoder.LogstashEncoder">
-            <customFields>{"app":"${app}"}</customFields>
+            <customFields>{"index":"${app}-${profile}"}</customFields>
         </encoder>
     </appender>
 
