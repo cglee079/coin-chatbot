@@ -1,7 +1,6 @@
 package com.podo.coinchatbot.app.util;
 
 import lombok.experimental.UtilityClass;
-import org.jetbrains.annotations.NotNull;
 
 import java.time.Instant;
 import java.time.LocalDate;

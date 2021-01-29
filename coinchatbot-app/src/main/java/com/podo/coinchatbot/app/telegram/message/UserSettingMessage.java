@@ -1,10 +1,10 @@
 package com.podo.coinchatbot.app.telegram.message;
 
-import com.podo.coinchatbot.core.Language;
-import com.podo.coinchatbot.app.telegram.exception.InvalidUserLanguageException;
 import com.podo.coinchatbot.app.domain.dto.UserDto;
-import com.podo.coinchatbot.app.util.MessageUtil;
 import com.podo.coinchatbot.app.telegram.CoinFormatter;
+import com.podo.coinchatbot.app.telegram.exception.InvalidUserLanguageException;
+import com.podo.coinchatbot.app.util.MessageUtil;
+import com.podo.coinchatbot.core.Language;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass

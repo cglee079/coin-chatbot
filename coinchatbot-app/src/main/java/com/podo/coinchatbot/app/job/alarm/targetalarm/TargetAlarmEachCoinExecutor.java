@@ -6,29 +6,25 @@ import com.podo.coinchatbot.app.client.CoinEndpointerUtil;
 import com.podo.coinchatbot.app.client.model.CoinResponse;
 import com.podo.coinchatbot.app.domain.dto.UserTargetAlarmDto;
 import com.podo.coinchatbot.app.domain.service.UserTargetAlarmService;
-import com.podo.coinchatbot.log.InstanceContext;
-import com.podo.coinchatbot.log.ThreadLocalContext;
 import com.podo.coinchatbot.app.property.MarketConfig;
 import com.podo.coinchatbot.app.telegram.CoinFormatter;
 import com.podo.coinchatbot.app.telegram.TelegramMessageSender;
 import com.podo.coinchatbot.core.Coin;
 import com.podo.coinchatbot.core.Market;
+import com.podo.coinchatbot.log.InstanceContext;
+import com.podo.coinchatbot.log.ThreadLocalContext;
 import lombok.RequiredArgsConstructor;
 import net.logstash.logback.argument.StructuredArguments;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor

@@ -1,7 +1,7 @@
 package com.podo.coinchatbot.app.model;
 
-import com.podo.coinchatbot.core.Market;
 import com.podo.coinchatbot.app.telegram.CoinFormatter;
+import com.podo.coinchatbot.core.Market;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -33,7 +33,7 @@ public class CoinMeta {
 
     @Builder
     @Getter
-    public static class Example{
+    public static class Example {
         private BigDecimal investKRW;
         private BigDecimal investUSD;
         private BigDecimal coinCount;

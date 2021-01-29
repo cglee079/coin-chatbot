@@ -1,8 +1,8 @@
 package com.podo.coinchatbot.app.telegram.keyboard;
 
+import com.podo.coinchatbot.app.telegram.command.MarketCommand;
 import com.podo.coinchatbot.core.Language;
 import com.podo.coinchatbot.core.Market;
-import com.podo.coinchatbot.app.telegram.command.MarketCommand;
 import lombok.experimental.UtilityClass;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
@@ -80,9 +80,9 @@ public class Keyboard {
 
     public static SetMarketKeyboard setMarketKeyboard(Language language, List<Market> enabledMarketIds) {
 
-            final List<MarketCommand> enabledMarketCommands = enabledMarketIds.stream()
-                    .map(MarketCommand::from)
-                    .collect(Collectors.toList());
+        final List<MarketCommand> enabledMarketCommands = enabledMarketIds.stream()
+                .map(MarketCommand::from)
+                .collect(Collectors.toList());
 
         return new SetMarketKeyboard(enabledMarketCommands, language);
     }

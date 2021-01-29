@@ -1,9 +1,9 @@
 package com.podo.coinchatbot.app.client;
 
-import com.podo.coinchatbot.core.Coin;
-import com.podo.coinchatbot.core.Market;
 import com.podo.coinchatbot.app.client.market.MarketApiClient;
 import com.podo.coinchatbot.app.client.model.CoinResponse;
+import com.podo.coinchatbot.core.Coin;
+import com.podo.coinchatbot.core.Market;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -20,7 +20,7 @@ public class CoinEndpointer {
                 .collect(Collectors.toMap(MarketApiClient::getMarket, m -> m));
     }
 
-    public CoinResponse getCoin(Coin coin, Market market){
+    public CoinResponse getCoin(Coin coin, Market market) {
         return marketToApiClient.get(market).getCoin(coin);
     }
 

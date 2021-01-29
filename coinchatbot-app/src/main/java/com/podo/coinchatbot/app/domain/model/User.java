@@ -1,9 +1,9 @@
 package com.podo.coinchatbot.app.domain.model;
 
+import com.podo.coinchatbot.app.model.Menu;
 import com.podo.coinchatbot.core.Coin;
 import com.podo.coinchatbot.core.Language;
 import com.podo.coinchatbot.core.Market;
-import com.podo.coinchatbot.app.model.Menu;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -82,7 +82,7 @@ public class User {
         this.market = market;
         this.telegramId = telegramId;
         this.chatId = chatId;
-        this.username= username;
+        this.username = username;
         this.dayloopAlarm = dayloopAlarm;
         this.timeloopAlarm = timeloopAlarm;
         this.menuStatus = menuStatus;
@@ -138,7 +138,7 @@ public class User {
 
     public void increaseErrorCount() {
         this.errorCount++;
-        if(errorCount > 5){
+        if (errorCount > 5) {
             this.userStatus = UserStatus.DEAD;
         }
     }

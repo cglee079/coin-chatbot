@@ -16,7 +16,7 @@ public class ApiCallResult {
         this.errorMessage = errorMessage;
     }
 
-    public Boolean isSuccess(){
+    public Boolean isSuccess() {
         return result;
     }
 

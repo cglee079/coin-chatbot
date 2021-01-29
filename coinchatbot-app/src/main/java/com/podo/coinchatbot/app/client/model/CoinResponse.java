@@ -37,11 +37,11 @@ public class CoinResponse extends Throwable {
         return coinResponse;
     }
 
-    public boolean isSuccess(){
+    public boolean isSuccess() {
         return result;
     }
 
-    public BigDecimal getCurrentPrice(){
+    public BigDecimal getCurrentPrice() {
         return lastPrice;
     }
 

@@ -4,7 +4,6 @@ import com.podo.coinchatbot.app.client.model.ApiCallResult;
 import com.podo.coinchatbot.log.InstanceContext;
 import lombok.experimental.UtilityClass;
 import net.logstash.logback.argument.StructuredArguments;
-import org.glassfish.grizzly.http.Method;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

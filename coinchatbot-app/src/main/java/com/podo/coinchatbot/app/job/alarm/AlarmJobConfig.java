@@ -36,7 +36,7 @@ public class AlarmJobConfig {
         coinConfigs.getProperties()
                 .stream()
                 .filter(c -> c.getBotConfig().getEnabled())
-                .forEach(c ->coinToTelegramMessageSender.put(c.getCoin(), new TelegramMessageSender(c.getBotConfig().getToken())));
+                .forEach(c -> coinToTelegramMessageSender.put(c.getCoin(), new TelegramMessageSender(c.getBotConfig().getToken())));
 
         return coinToTelegramMessageSender;
     }

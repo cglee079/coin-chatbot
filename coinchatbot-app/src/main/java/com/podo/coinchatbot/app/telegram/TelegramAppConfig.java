@@ -1,9 +1,8 @@
 package com.podo.coinchatbot.app.telegram;
 
 
-import com.podo.coinchatbot.app.telegram.TelegramMessageReceiver;
-import com.podo.coinchatbot.app.telegram.menu.MenuHandler;
 import com.podo.coinchatbot.app.model.Menu;
+import com.podo.coinchatbot.app.telegram.menu.MenuHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.telegram.telegrambots.meta.TelegramBotsApi;

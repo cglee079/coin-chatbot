@@ -5,7 +5,6 @@ import com.podo.coinchatbot.app.property.MarketConfig;
 import com.podo.coinchatbot.core.Coin;
 import com.podo.coinchatbot.log.InstanceContext;
 import lombok.RequiredArgsConstructor;
-import net.logstash.logback.argument.StructuredArgument;
 import net.logstash.logback.argument.StructuredArguments;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

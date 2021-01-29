@@ -1,7 +1,6 @@
 package com.podo.coinchatbot.app.domain.repository;
 
 import com.podo.coinchatbot.app.domain.model.UserTargetAlarm;
-import com.podo.coinchatbot.app.model.TargetFocus;
 import com.podo.coinchatbot.core.Coin;
 import com.podo.coinchatbot.core.Market;
 import org.springframework.data.jpa.repository.JpaRepository;

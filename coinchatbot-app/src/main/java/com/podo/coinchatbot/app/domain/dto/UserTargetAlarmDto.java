@@ -13,15 +13,15 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @Builder
 public class UserTargetAlarmDto {
-	private Long id;
-	private Long userId;
-	private BigDecimal targetPrice;
-	private TargetFocus targetFocus;
+    private Long id;
+    private Long userId;
+    private BigDecimal targetPrice;
+    private TargetFocus targetFocus;
 
-	public UserTargetAlarmDto(UserTargetAlarm userTargetAlarm){
-		this.id = userTargetAlarm.getId();
-		this.userId = userTargetAlarm.getUserId();
-		this.targetPrice = userTargetAlarm.getTargetPrice();
-		this.targetFocus = userTargetAlarm.getTargetFocus();
-	}
+    public UserTargetAlarmDto(UserTargetAlarm userTargetAlarm) {
+        this.id = userTargetAlarm.getId();
+        this.userId = userTargetAlarm.getUserId();
+        this.targetPrice = userTargetAlarm.getTargetPrice();
+        this.targetFocus = userTargetAlarm.getTargetFocus();
+    }
 }

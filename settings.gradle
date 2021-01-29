@@ -1,5 +1,5 @@
 rootProject.name = 'coinchatbot'
 
 include 'coinchatbot-core',
-    'coinchatbot-app'
+        'coinchatbot-app'
 

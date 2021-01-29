@@ -13,12 +13,12 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @Builder
 public class UserTargetAlarmInsertDto {
-	private Long id;
-	private Long userId;
-	private BigDecimal targetPrice;
-	private TargetFocus targetFocus;
+    private Long id;
+    private Long userId;
+    private BigDecimal targetPrice;
+    private TargetFocus targetFocus;
 
-	public UserTargetAlarm toEntity(){
-		return new UserTargetAlarm(userId, targetPrice, targetFocus);
-	}
+    public UserTargetAlarm toEntity() {
+        return new UserTargetAlarm(userId, targetPrice, targetFocus);
+    }
 }

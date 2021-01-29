@@ -2,7 +2,7 @@ package com.podo.coinchatbot.app.model;
 
 
 public enum Menu {
-    MAIN ,
+    MAIN,
     INVEST_CONFIG,
     COIN_COUNT_CONFIG,
 

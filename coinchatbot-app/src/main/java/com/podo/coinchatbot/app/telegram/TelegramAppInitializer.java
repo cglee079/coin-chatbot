@@ -1,29 +1,23 @@
 package com.podo.coinchatbot.app.telegram;
 
-import com.podo.coinchatbot.app.property.BotConfig;
-import com.podo.coinchatbot.app.property.CoinConfig;
 import com.podo.coinchatbot.app.domain.service.UserService;
 import com.podo.coinchatbot.app.model.CoinMeta;
 import com.podo.coinchatbot.app.model.Menu;
+import com.podo.coinchatbot.app.property.BotConfig;
+import com.podo.coinchatbot.app.property.CoinConfig;
 import com.podo.coinchatbot.app.property.CoinConfigs;
 import com.podo.coinchatbot.app.property.DigitConfig;
 import com.podo.coinchatbot.app.property.Example;
 import com.podo.coinchatbot.app.property.MarketConfig;
-import com.podo.coinchatbot.app.telegram.CoinFormatter;
-import com.podo.coinchatbot.app.telegram.TelegramMessageReceiver;
-import com.podo.coinchatbot.app.telegram.TelegramMessageReceiverHandler;
-import com.podo.coinchatbot.app.telegram.TelegramMessageSender;
 import com.podo.coinchatbot.app.telegram.menu.MenuHandler;
 import com.podo.coinchatbot.core.Coin;
 import com.podo.coinchatbot.core.Market;
-import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
-import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;

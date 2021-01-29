@@ -9,11 +9,9 @@ import com.podo.coinchatbot.core.Coin;
 import com.podo.coinchatbot.core.Market;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 
 @Component
 @RequiredArgsConstructor

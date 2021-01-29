@@ -1,11 +1,11 @@
 package com.podo.coinchatbot.app.client.market;
 
-import com.podo.coinchatbot.core.Coin;
-import com.podo.coinchatbot.core.Market;
+import com.podo.coinchatbot.app.client.ApiCaller;
 import com.podo.coinchatbot.app.client.exception.UnknownParameterValueException;
 import com.podo.coinchatbot.app.client.model.ApiCallResult;
 import com.podo.coinchatbot.app.client.model.CoinResponse;
-import com.podo.coinchatbot.app.client.ApiCaller;
+import com.podo.coinchatbot.core.Coin;
+import com.podo.coinchatbot.core.Market;
 import org.json.JSONArray;
 import org.springframework.stereotype.Component;
 
@@ -68,7 +68,7 @@ public class BitfinexApiClient extends MarketApiClient {
         String urlParam = String.join(",", coinToParameterValue.values());
 
         apiCallResult = ApiCaller.callGetApi(URL + urlParam);
-        if(apiCallResult.isSuccess()) {
+        if (apiCallResult.isSuccess()) {
             response = new JSONArray(apiCallResult.getResponseBody());
         }
     }

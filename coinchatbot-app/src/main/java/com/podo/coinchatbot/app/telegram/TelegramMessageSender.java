@@ -1,9 +1,8 @@
 package com.podo.coinchatbot.app.telegram;
 
-import com.podo.coinchatbot.log.ThreadLocalContext;
-import com.podo.coinchatbot.core.Coin;
 import com.podo.coinchatbot.app.telegram.exception.TelegramApiRuntimeException;
 import com.podo.coinchatbot.app.telegram.model.SendMessageVo;
+import com.podo.coinchatbot.log.ThreadLocalContext;
 import org.telegram.telegrambots.bots.DefaultAbsSender;
 import org.telegram.telegrambots.bots.DefaultBotOptions;
 import org.telegram.telegrambots.meta.ApiContext;
@@ -29,7 +28,7 @@ public class TelegramMessageSender extends DefaultAbsSender {
         send(sendmessageVo);
     }
 
-    public void sendAlarm(SendMessageVo sendMessageVo){
+    public void sendAlarm(SendMessageVo sendMessageVo) {
         ThreadLocalContext.putSendMessage(sendMessageVo.getMessage());
         send(sendMessageVo);
     }

@@ -1,8 +1,8 @@
 package com.podo.coinchatbot.app.util;
 
+import com.podo.coinchatbot.app.telegram.command.MarketCommand;
 import com.podo.coinchatbot.core.Language;
 import com.podo.coinchatbot.core.Market;
-import com.podo.coinchatbot.app.telegram.command.MarketCommand;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass

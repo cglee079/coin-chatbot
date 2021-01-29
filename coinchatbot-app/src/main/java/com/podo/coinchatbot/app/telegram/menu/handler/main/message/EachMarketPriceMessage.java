@@ -1,11 +1,11 @@
 package com.podo.coinchatbot.app.telegram.menu.handler.main.message;
 
-import com.podo.coinchatbot.core.Language;
-import com.podo.coinchatbot.core.Market;
 import com.podo.coinchatbot.app.domain.dto.UserDto;
-import com.podo.coinchatbot.app.util.MessageUtil;
 import com.podo.coinchatbot.app.telegram.CoinFormatter;
 import com.podo.coinchatbot.app.util.DateTimeUtil;
+import com.podo.coinchatbot.app.util.MessageUtil;
+import com.podo.coinchatbot.core.Language;
+import com.podo.coinchatbot.core.Market;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

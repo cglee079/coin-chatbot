@@ -1,8 +1,7 @@
 package com.podo.coinchatbot.app.domain.repository;
 
-import com.podo.coinchatbot.app.domain.dto.UserDto;
-import com.podo.coinchatbot.core.Coin;
 import com.podo.coinchatbot.app.domain.model.User;
+import com.podo.coinchatbot.core.Coin;
 import com.podo.coinchatbot.core.Market;
 import org.springframework.data.jpa.repository.JpaRepository;
 

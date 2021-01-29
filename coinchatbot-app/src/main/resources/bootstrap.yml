@@ -1,4 +1,3 @@
-
 ---
 spring.profiles: dev
 spring.profiles.include: app-dev, coins-dev

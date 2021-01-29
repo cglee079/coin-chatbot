@@ -1,19 +1,18 @@
 package com.podo.coinchatbot.app.telegram.menu.handler.main;
 
-import com.podo.coinchatbot.core.Coin;
-import com.podo.coinchatbot.core.Language;
-import com.podo.coinchatbot.core.Market;
-import com.podo.coinchatbot.app.client.CoinEndpointerUtil;
-import com.podo.coinchatbot.app.client.model.CoinResponse;
-import com.podo.coinchatbot.app.telegram.keyboard.Keyboard;
-import com.podo.coinchatbot.app.telegram.TelegramMessageSender;
 import com.podo.coinchatbot.app.client.CoinEndpointer;
-import com.podo.coinchatbot.app.model.CoinMeta;
+import com.podo.coinchatbot.app.client.CoinEndpointerUtil;
 import com.podo.coinchatbot.app.client.ExchangeHolder;
-import com.podo.coinchatbot.app.telegram.command.MainCommand;
+import com.podo.coinchatbot.app.client.model.CoinResponse;
+import com.podo.coinchatbot.app.domain.dto.UserDto;
 import com.podo.coinchatbot.app.domain.service.CoinInformationService;
-import com.podo.coinchatbot.app.domain.service.UserTargetAlarmService;
 import com.podo.coinchatbot.app.domain.service.UserService;
+import com.podo.coinchatbot.app.domain.service.UserTargetAlarmService;
+import com.podo.coinchatbot.app.model.CoinMeta;
+import com.podo.coinchatbot.app.model.Menu;
+import com.podo.coinchatbot.app.telegram.TelegramMessageSender;
+import com.podo.coinchatbot.app.telegram.command.MainCommand;
+import com.podo.coinchatbot.app.telegram.keyboard.Keyboard;
 import com.podo.coinchatbot.app.telegram.menu.AbstractMenuHandler;
 import com.podo.coinchatbot.app.telegram.menu.handler.main.message.CalculateMessage;
 import com.podo.coinchatbot.app.telegram.menu.handler.main.message.ComparedToBTCMessage;
@@ -22,11 +21,12 @@ import com.podo.coinchatbot.app.telegram.menu.handler.main.message.EachMarketPri
 import com.podo.coinchatbot.app.telegram.menu.handler.main.message.MainCommonMessage;
 import com.podo.coinchatbot.app.telegram.message.HelpMessage;
 import com.podo.coinchatbot.app.telegram.message.UserSettingMessage;
-import com.podo.coinchatbot.app.model.Menu;
 import com.podo.coinchatbot.app.telegram.model.MessageVo;
 import com.podo.coinchatbot.app.telegram.model.SendMessageVo;
-import com.podo.coinchatbot.app.domain.dto.UserDto;
 import com.podo.coinchatbot.app.util.DateTimeUtil;
+import com.podo.coinchatbot.core.Coin;
+import com.podo.coinchatbot.core.Language;
+import com.podo.coinchatbot.core.Market;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

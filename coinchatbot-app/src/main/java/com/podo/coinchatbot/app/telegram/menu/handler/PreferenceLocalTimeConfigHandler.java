@@ -1,18 +1,18 @@
 package com.podo.coinchatbot.app.telegram.menu.handler;
 
-import com.podo.coinchatbot.core.Coin;
-import com.podo.coinchatbot.core.Language;
-import com.podo.coinchatbot.app.telegram.keyboard.Keyboard;
-import com.podo.coinchatbot.app.telegram.TelegramMessageSender;
-import com.podo.coinchatbot.app.model.CoinMeta;
+import com.podo.coinchatbot.app.domain.dto.UserDto;
 import com.podo.coinchatbot.app.domain.service.UserService;
+import com.podo.coinchatbot.app.model.CoinMeta;
+import com.podo.coinchatbot.app.model.Menu;
+import com.podo.coinchatbot.app.telegram.TelegramMessageSender;
+import com.podo.coinchatbot.app.telegram.keyboard.Keyboard;
 import com.podo.coinchatbot.app.telegram.menu.AbstractMenuHandler;
 import com.podo.coinchatbot.app.telegram.message.CommonMessage;
-import com.podo.coinchatbot.app.model.Menu;
 import com.podo.coinchatbot.app.telegram.model.MessageVo;
 import com.podo.coinchatbot.app.telegram.model.SendMessageVo;
-import com.podo.coinchatbot.app.domain.dto.UserDto;
 import com.podo.coinchatbot.app.util.DateTimeUtil;
+import com.podo.coinchatbot.core.Coin;
+import com.podo.coinchatbot.core.Language;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,7 +42,7 @@ public class PreferenceLocalTimeConfigHandler extends AbstractMenuHandler {
         LocalDateTime now = LocalDateTime.now();
 
 
-        if(messageText.equals("0")) {
+        if (messageText.equals("0")) {
             userService.updateTimeDifference(userId, 0L);
             message.append(messageLocalTimeConfigSuccess(now));
         } else {

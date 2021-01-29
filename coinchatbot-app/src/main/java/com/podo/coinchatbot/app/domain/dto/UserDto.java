@@ -1,11 +1,11 @@
 package com.podo.coinchatbot.app.domain.dto;
 
+import com.podo.coinchatbot.app.domain.model.User;
 import com.podo.coinchatbot.app.domain.model.UserStatus;
+import com.podo.coinchatbot.app.model.Menu;
 import com.podo.coinchatbot.core.Coin;
 import com.podo.coinchatbot.core.Language;
 import com.podo.coinchatbot.core.Market;
-import com.podo.coinchatbot.app.domain.model.User;
-import com.podo.coinchatbot.app.model.Menu;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

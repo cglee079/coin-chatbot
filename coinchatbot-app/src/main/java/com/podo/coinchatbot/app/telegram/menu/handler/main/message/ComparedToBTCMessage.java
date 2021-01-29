@@ -1,11 +1,11 @@
 package com.podo.coinchatbot.app.telegram.menu.handler.main.message;
 
+import com.podo.coinchatbot.app.telegram.CoinFormatter;
+import com.podo.coinchatbot.app.telegram.exception.InvalidUserLanguageException;
+import com.podo.coinchatbot.app.util.MessageUtil;
 import com.podo.coinchatbot.core.Coin;
 import com.podo.coinchatbot.core.Language;
 import com.podo.coinchatbot.core.Market;
-import com.podo.coinchatbot.app.telegram.exception.InvalidUserLanguageException;
-import com.podo.coinchatbot.app.util.MessageUtil;
-import com.podo.coinchatbot.app.telegram.CoinFormatter;
 
 import java.math.BigDecimal;
 

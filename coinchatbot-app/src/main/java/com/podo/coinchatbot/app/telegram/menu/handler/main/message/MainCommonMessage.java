@@ -1,14 +1,14 @@
 package com.podo.coinchatbot.app.telegram.menu.handler.main.message;
 
-import com.podo.coinchatbot.core.Language;
-import com.podo.coinchatbot.core.Market;
+import com.podo.coinchatbot.app.domain.dto.CoinInformationDto;
+import com.podo.coinchatbot.app.domain.dto.UserTargetAlarmDto;
 import com.podo.coinchatbot.app.model.CoinMeta;
+import com.podo.coinchatbot.app.telegram.CoinFormatter;
 import com.podo.coinchatbot.app.telegram.command.MainCommand;
 import com.podo.coinchatbot.app.telegram.command.SuggestMessageCommand;
 import com.podo.coinchatbot.app.telegram.exception.InvalidUserLanguageException;
-import com.podo.coinchatbot.app.domain.dto.CoinInformationDto;
-import com.podo.coinchatbot.app.domain.dto.UserTargetAlarmDto;
-import com.podo.coinchatbot.app.telegram.CoinFormatter;
+import com.podo.coinchatbot.core.Language;
+import com.podo.coinchatbot.core.Market;
 import lombok.experimental.UtilityClass;
 
 import java.math.BigDecimal;
@@ -363,7 +363,6 @@ public class MainCommonMessage {
                 throw new InvalidUserLanguageException();
         }
     }
-
 
 
 }
