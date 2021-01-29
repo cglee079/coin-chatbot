@@ -1,6 +1,8 @@
+spring.application.name: coinchatbot
+
 ---
 spring.profiles: dev
-spring.profiles.include: app-dev, coins-dev
+spring.profiles.include: dev-app, dev-coins
 spring.application.name: coinchatbot-dev
 
 ---
@@ -11,6 +13,5 @@ spring.application.name: coinchatbot-test
 ---
 
 spring.profiles: prod
-spring.profiles.include: app, coins
-spring.application.name: coinchatbot-prod
+spring.profiles.include: prod-app, prod-coins
 spring.cloud.config.uri: http://cloud.config.podo-dev.com
