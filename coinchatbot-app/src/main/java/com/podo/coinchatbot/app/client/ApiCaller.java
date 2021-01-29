@@ -1,6 +1,7 @@
 package com.podo.coinchatbot.app.client;
 
 import com.podo.coinchatbot.app.client.model.ApiCallResult;
+import com.podo.coinchatbot.app.util.JsonUtil;
 import com.podo.coinchatbot.log.InstanceContext;
 import lombok.experimental.UtilityClass;
 import net.logstash.logback.argument.StructuredArguments;
@@ -27,7 +28,7 @@ public class ApiCaller {
         InstanceContext clientContext = new InstanceContext("api-client");
 
         HttpMethod method = HttpMethod.GET;
-        clientContext.put("request", getRequest(url, method));
+        clientContext.put("client.request", getRequest(url, method));
 
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
@@ -35,7 +36,7 @@ public class ApiCaller {
 
         try {
             ResponseEntity<String> exchange = restTemplate.exchange(url, method, new HttpEntity<>("", headers), String.class);
-            clientContext.put("response", getResponse(exchange));
+            clientContext.put("client.response", getResponse(exchange));
             return new ApiCallResult(true, "", exchange.getBody());
         } catch (Exception e) {
             clientContext.putException(e);
@@ -49,7 +50,7 @@ public class ApiCaller {
         Map<String, Object> response = new HashMap<>();
         response.put("body", exchange.getBody());
         response.put("status", exchange.getStatusCodeValue());
-        response.put("headers", exchange.getHeaders());
+        response.put("headers", JsonUtil.toJSON(exchange.getHeaders()));
         return response;
     }
 
