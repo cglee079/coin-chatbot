@@ -13,4 +13,4 @@ spring.application.name: coinchatbot-test
 spring.profiles: prod
 spring.profiles.include: app, coins
 spring.application.name: coinchatbot-prod
-spring.cloud.config.uri: http://192.168.50.2:8888
+spring.cloud.config.uri: http://cloud.config.podo-dev.com

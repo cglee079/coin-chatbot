@@ -31,7 +31,7 @@ public class TelegramMessageReceiver extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
         executorService.submit(() -> {
-            ThreadLocalContext.init("message-receive");
+            ThreadLocalContext.init("telegram-message");
             telegramMessageReceiverHandler.handle(update);
         });
     }

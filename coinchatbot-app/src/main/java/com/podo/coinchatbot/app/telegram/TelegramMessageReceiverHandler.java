@@ -15,6 +15,7 @@ import com.podo.coinchatbot.app.telegram.message.HelpMessage;
 import com.podo.coinchatbot.app.telegram.message.UserSettingMessage;
 import com.podo.coinchatbot.app.telegram.model.MessageVo;
 import com.podo.coinchatbot.app.telegram.model.SendMessageVo;
+import com.podo.coinchatbot.app.util.DateTimeUtil;
 import com.podo.coinchatbot.core.Coin;
 import com.podo.coinchatbot.core.Language;
 import com.podo.coinchatbot.log.ThreadLocalContext;
@@ -93,11 +94,11 @@ public class TelegramMessageReceiverHandler {
         final String messageText = message.getText();
         final LocalDateTime messageReceivedAt = LocalDateTime.now();
 
-        ThreadLocalContext.put("telegramId", telegramId.toString());
-        ThreadLocalContext.put("chatId", chatId.toString());
-        ThreadLocalContext.put("messageId", messageId.toString());
-        ThreadLocalContext.put("messageText", messageText);
-        ThreadLocalContext.putDateTime("messageReceivedAt", messageReceivedAt);
+        ThreadLocalContext.put("telegram.userId", telegramId.toString());
+        ThreadLocalContext.put("telegram.chatId", chatId.toString());
+        ThreadLocalContext.put("telegram.message.receive.id", messageId.toString());
+        ThreadLocalContext.put("telegram.message.receive.text", messageText);
+        ThreadLocalContext.put("telegram.message.receive.dateTime", DateTimeUtil.toFullContextString(messageReceivedAt));
 
         final MessageVo messageVo = new MessageVo(telegramId, chatId, messageId);
 
@@ -110,7 +111,10 @@ public class TelegramMessageReceiverHandler {
             return;
         }
 
-        ThreadLocalContext.put("language", user.getLanguage());
+        ThreadLocalContext.put("user.id", user.getId());
+        ThreadLocalContext.put("user.menuStatus", user.getMenuStatus());
+        ThreadLocalContext.put("user.market", user.getMarket());
+        ThreadLocalContext.put("user.language", user.getLanguage());
 
         if (messageText.equals("/start")) {
             Language language = user.getLanguage();

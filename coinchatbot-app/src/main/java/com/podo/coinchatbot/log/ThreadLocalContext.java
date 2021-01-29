@@ -19,10 +19,6 @@ public class ThreadLocalContext {
         values.get().put(key, value);
     }
 
-    public static void putDateTime(String key, LocalDateTime localDateTime) {
-        values.get().put(key, DateTimeUtil.toFullContextString(localDateTime));
-    }
-
     public static void removeAll() {
         values.set(new HashMap<>());
     }
@@ -41,13 +37,13 @@ public class ThreadLocalContext {
     }
 
     public static void putException(Exception e) {
-        values.get().put("exceptionMessage-" + exceptionIndex.get(), e.getMessage());
-        values.get().put("stackTrace-" + exceptionIndex.get(), Arrays.stream(e.getStackTrace()).map(StackTraceElement::toString).collect(Collectors.joining("\n")));
+        values.get().put("exception.message-" + exceptionIndex.get(), e.getMessage());
+        values.get().put("exception.stackTrace-" + exceptionIndex.get(), Arrays.stream(e.getStackTrace()).map(StackTraceElement::toString).collect(Collectors.joining("\n")));
         exceptionIndex.set(exceptionIndex.get() + 1);
     }
 
-    public static void putSendMessage(String message) {
-        values.get().put("sendMessage-" + sendMessageIndex.get(), message);
+    public static void putTelegramMessageSend(String message) {
+        values.get().put("telegram.message.send.text-" + sendMessageIndex.get(), message);
         sendMessageIndex.set(sendMessageIndex.get() + 1);
     }
 
