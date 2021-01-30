@@ -4,7 +4,6 @@ import com.podo.coinchatbot.app.client.model.ApiCallResult;
 import com.podo.coinchatbot.app.util.DateTimeUtil;
 import com.podo.coinchatbot.app.util.JsonUtil;
 import com.podo.coinchatbot.log.InstanceContext;
-import jdk.vm.ci.meta.Local;
 import lombok.experimental.UtilityClass;
 import net.logstash.logback.argument.StructuredArguments;
 import org.jetbrains.annotations.NotNull;
