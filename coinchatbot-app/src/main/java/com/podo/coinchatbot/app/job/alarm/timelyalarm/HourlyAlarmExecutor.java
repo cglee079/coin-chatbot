@@ -76,7 +76,7 @@ public class HourlyAlarmExecutor {
     private void sendAlarm(Coin coin, UserDto user, String message, TelegramMessageSender telegramMessageSender) {
         executorService.submit(() -> {
             ThreadLocalContext.init("hourly-alarm");
-            ThreadLocalContext.put("coin", coin);
+            ThreadLocalContext.put("coin.id", coin);
             try {
                 telegramMessageSender.sendAlarm(SendMessageVo.create(new MessageVo(user.getTelegramId(), user.getChatId()), message, null));
             } catch (Exception e) {

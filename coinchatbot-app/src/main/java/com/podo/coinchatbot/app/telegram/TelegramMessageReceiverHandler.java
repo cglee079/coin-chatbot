@@ -49,7 +49,7 @@ public class TelegramMessageReceiverHandler {
 
     @Transactional
     public void handle(Update update) {
-        ThreadLocalContext.put("coin", coin);
+        ThreadLocalContext.put("coin.id", coin);
 
         Message message = getMessage(update);
         Integer telegramId = message.getFrom().getId();
