@@ -1,8 +1,10 @@
 package com.podo.coinchatbot.app.client;
 
 import com.podo.coinchatbot.app.client.model.ApiCallResult;
+import com.podo.coinchatbot.app.util.DateTimeUtil;
 import com.podo.coinchatbot.app.util.JsonUtil;
 import com.podo.coinchatbot.log.InstanceContext;
+import jdk.vm.ci.meta.Local;
 import lombok.experimental.UtilityClass;
 import net.logstash.logback.argument.StructuredArguments;
 import org.jetbrains.annotations.NotNull;
@@ -15,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,6 +31,7 @@ public class ApiCaller {
         InstanceContext clientContext = new InstanceContext("api-client");
 
         HttpMethod method = HttpMethod.GET;
+        clientContext.put("client.request.at", DateTimeUtil.toFullContextString(LocalDateTime.now()));
         clientContext.put("client.request", getRequest(url, method));
 
         RestTemplate restTemplate = new RestTemplate();
@@ -61,6 +65,7 @@ public class ApiCaller {
         request.put("method", method.toString());
         request.put("queryString", getQueryString(url));
         request.put("host", getHost(url));
+        request.put("headers.userAgent", USER_AGENT);
         return request;
     }
 

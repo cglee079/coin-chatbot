@@ -2,6 +2,7 @@ package com.podo.coinchatbot.app.job.alarm.timelyalarm;
 
 import com.podo.coinchatbot.app.job.Job;
 import com.podo.coinchatbot.app.property.MarketConfig;
+import com.podo.coinchatbot.app.util.DateTimeUtil;
 import com.podo.coinchatbot.core.Coin;
 import com.podo.coinchatbot.log.InstanceContext;
 import lombok.RequiredArgsConstructor;
@@ -32,12 +33,12 @@ public class TimelyAlarmJob implements Job {
 
         try {
             LocalDateTime now = LocalDateTime.now();
-            instanceContext.putDateTime("jobStartAt", now);
+            instanceContext.put("job.startAt", DateTimeUtil.toFullContextString(now));
             doRun(instanceContext, now);
         } catch (Exception e) {
             instanceContext.putException(e);
         } finally {
-            instanceContext.putDateTime("jobEndAt", LocalDateTime.now());
+            instanceContext.put("job.endAt", DateTimeUtil.toFullContextString(LocalDateTime.now()));
             LOGGER.info("", StructuredArguments.value("context", instanceContext.toLog()));
         }
     }

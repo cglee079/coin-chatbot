@@ -26,8 +26,8 @@ public class InstanceContext {
     }
 
     public void putException(Exception e) {
-        values.put("exceptionMessage-" + exceptionIndex, e.getMessage());
-        values.put("stackTrace-" + exceptionIndex, Arrays.stream(e.getStackTrace()).map(StackTraceElement::toString).collect(Collectors.joining("\n")));
+        values.put("exception.message-" + exceptionIndex, e.getMessage());
+        values.put("exception.stackTrace-" + exceptionIndex, Arrays.stream(e.getStackTrace()).map(StackTraceElement::toString).collect(Collectors.joining("\n")));
         exceptionIndex++;
     }
 
@@ -37,9 +37,5 @@ public class InstanceContext {
 
     public String getId() {
         return (String) values.get("id");
-    }
-
-    public void putDateTime(String key, LocalDateTime value) {
-        values.put(key, DateTimeUtil.toFullContextString(value));
     }
 }

@@ -98,7 +98,7 @@ public class TelegramMessageReceiverHandler {
         ThreadLocalContext.put("telegram.chatId", chatId.toString());
         ThreadLocalContext.put("telegram.message.receive.id", messageId.toString());
         ThreadLocalContext.put("telegram.message.receive.text", messageText);
-        ThreadLocalContext.put("telegram.message.receive.dateTime", DateTimeUtil.toFullContextString(messageReceivedAt));
+        ThreadLocalContext.put("telegram.message.receive.at", DateTimeUtil.toFullContextString(messageReceivedAt));
 
         final MessageVo messageVo = new MessageVo(telegramId, chatId, messageId);
 

@@ -34,11 +34,11 @@ public class TargetAlarmEachTargetExcecutor {
         Long chatId = user.getChatId();
         Language language = user.getLanguage();
 
-        ThreadLocalContext.put("telegramId", telegramId.toString());
-        ThreadLocalContext.put("chatId", chatId.toString());
-        ThreadLocalContext.put("targetFocus", target.getTargetFocus());
-        ThreadLocalContext.put("targetPrice", targetPrice);
-        ThreadLocalContext.put("currentPrice", currentPrice);
+        ThreadLocalContext.put("telegram.userId", telegramId.toString());
+        ThreadLocalContext.put("telegram.chatId", chatId.toString());
+        ThreadLocalContext.put("target.focus", target.getTargetFocus());
+        ThreadLocalContext.put("target.price", targetPrice);
+        ThreadLocalContext.put("coin.current.price", currentPrice);
 
         String message = msgTargetPriceNotify(currentPrice, targetPrice, market, language, coinFormatter);
         telegramMessageSender.sendAlarm(SendMessageVo.create(new MessageVo(telegramId, chatId), message, null));
@@ -57,7 +57,7 @@ public class TargetAlarmEachTargetExcecutor {
                 break;
             case EN:
                 message.append("Target price reached!\n");
-                message.append("Traget Price : " + coinFormatter.toMoneyStr(targetPrice, market) + "\n");
+                message.append("Target Price : " + coinFormatter.toMoneyStr(targetPrice, market) + "\n");
                 message.append("Current Price : " + coinFormatter.toMoneyStr(currentValue, market) + "\n");
                 break;
             default:
