@@ -1,6 +1,7 @@
 package com.podo.coinchatbot.app.job;
 
 import com.podo.coinchatbot.app.client.market.MarketApiClient;
+import com.podo.coinchatbot.app.util.DateTimeUtil;
 import com.podo.coinchatbot.log.InstanceContext;
 import lombok.RequiredArgsConstructor;
 import net.logstash.logback.argument.StructuredArguments;
@@ -23,7 +24,7 @@ public class MarketRefreshJob implements Job {
     @Override
     public void run() {
         InstanceContext marketRefreshContext = new InstanceContext("market-refresh-job");
-        marketRefreshContext.putDateTime("jobStartAt", LocalDateTime.now());
+        marketRefreshContext.put("job.startAt", DateTimeUtil.toFullContextString(LocalDateTime.now()));
 
         try {
             for (MarketApiClient marketApiClient : marketApiClients) {
@@ -32,7 +33,7 @@ public class MarketRefreshJob implements Job {
         } catch (Exception e) {
             marketRefreshContext.putException(e);
         } finally {
-            marketRefreshContext.putDateTime("jobEndAt", LocalDateTime.now());
+            marketRefreshContext.put("job.endAt", DateTimeUtil.toFullContextString(LocalDateTime.now()));
             LOGGER.info("", StructuredArguments.value("context", marketRefreshContext.toLog()));
         }
     }

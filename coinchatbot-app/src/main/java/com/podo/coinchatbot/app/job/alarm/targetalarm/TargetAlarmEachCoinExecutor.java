@@ -60,7 +60,7 @@ public class TargetAlarmEachCoinExecutor {
             alarmEachTarget(instanceContext, market, currentPrice, coin, target);
         }
 
-        instanceContext.put("numberOfTarget", forFocusUpTargetAlarm.size() + forFocusDownTargetAlarm.size());
+        instanceContext.put("job.numberOfTarget", forFocusUpTargetAlarm.size() + forFocusDownTargetAlarm.size());
     }
 
     private void alarmEachTarget(InstanceContext instanceContext, Market market, BigDecimal currentPrice, Coin coin, UserTargetAlarmDto target) {
@@ -69,8 +69,8 @@ public class TargetAlarmEachCoinExecutor {
 
         executorService.submit(() -> {
             try {
-                ThreadLocalContext.init("target-alarm");
-                ThreadLocalContext.put("jobId", instanceContext.getId());
+                ThreadLocalContext.init("coin-target-alarm");
+                ThreadLocalContext.put("job.id", instanceContext.getId());
                 ThreadLocalContext.put("coin", coin);
                 targetAlarmEachTargetExcecutor.alarmEachTarget(market, currentPrice, coinFormatter, telegramMessageSender, target);
             } catch (Exception e) {

@@ -3,6 +3,7 @@ package com.podo.coinchatbot.app.job.alarm.targetalarm;
 
 import com.podo.coinchatbot.app.job.Job;
 import com.podo.coinchatbot.app.property.MarketConfig;
+import com.podo.coinchatbot.app.util.DateTimeUtil;
 import com.podo.coinchatbot.core.Coin;
 import com.podo.coinchatbot.log.InstanceContext;
 import lombok.RequiredArgsConstructor;
@@ -28,7 +29,7 @@ public class TargetAlarmJob implements Job {
     @Override
     public void run() {
         InstanceContext instanceContext = new InstanceContext("target-alarm-job");
-        instanceContext.putDateTime("jobStartAt", LocalDateTime.now());
+        instanceContext.put("job.startAt", DateTimeUtil.toFullContextString(LocalDateTime.now()));
 
         for (Coin coin : coinToEnabledMarketConfigs.keySet()) {
             List<MarketConfig> marketConfigs = coinToEnabledMarketConfigs.get(coin);
@@ -41,7 +42,7 @@ public class TargetAlarmJob implements Job {
             }
         }
 
-        instanceContext.putDateTime("jobEndAt", LocalDateTime.now());
+        instanceContext.put("job.endAt", DateTimeUtil.toFullContextString(LocalDateTime.now()));
 
         LOGGER.info("", StructuredArguments.value("context", instanceContext.toLog()));
     }
