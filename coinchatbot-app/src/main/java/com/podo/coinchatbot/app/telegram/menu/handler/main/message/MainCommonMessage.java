@@ -236,31 +236,24 @@ public class MainCommonMessage {
 
     public static String explainSupport(Language language) {
         StringBuilder message = new StringBuilder();
-        String url = "https://toon.at/donate/dev-cglee";
+        String url = "https://www.buymeacoffee.com/podo";
         switch (language) {
             case KR:
-                message.append("안녕하세요. 개발자 CGLEE 입니다.\n");
-                message.append("본 서비스는 무료 서비스 임을 다시 한번 알려드리며,\n");
-                message.append("절대로! 후원하지 않는다하여 사용자 여러분에게 불이익을 제공하지 않습니다.^^\n");
-                message.append("\n");
                 message.append("<a href='");
                 message.append(url);
                 message.append("'>★ 후원하러가기!</a>");
                 message.append("\n");
                 message.append("\n");
-                message.append("감사합니다.\n");
+                message.append("감사합니다. BY 개발자 podo\n");
                 break;
 
             case EN:
-                message.append("Hi. I'm developer CGLEE\n");
-                message.append("Never! I don't offer disadvantages to users by not sponsoring. :D\n");
-                message.append("\n");
                 message.append("<a href='");
                 message.append(url);
                 message.append("'>★ Go to Sponsoring!</a>");
                 message.append("\n");
                 message.append("\n");
-                message.append("Thank you for sponsoring.\n");
+                message.append("Thank you for sponsoring by developer. podo\n");
                 break;
 
             default:
