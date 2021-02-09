@@ -239,21 +239,20 @@ public class MainCommonMessage {
         String url = "https://www.buymeacoffee.com/podo";
         switch (language) {
             case KR:
-                message.append("<a href='");
+                message.append("커피 한잔은\n");
+                message.append("개발자에게 큰 힘이 됩니다!!\n");
+                message.append("BY podo >.<\n");
+                message.append("\n");
+                message.append(">> ");
                 message.append(url);
-                message.append("'>★ 후원하러가기!</a>");
-                message.append("\n");
-                message.append("\n");
-                message.append("감사합니다. BY 개발자 podo\n");
                 break;
 
             case EN:
-                message.append("<a href='");
+                message.append("Thank you for coffee!!\n");
+                message.append("BY developer. podo\n");
+                message.append("\n");
+                message.append(">> ");
                 message.append(url);
-                message.append("'>★ Go to Sponsoring!</a>");
-                message.append("\n");
-                message.append("\n");
-                message.append("Thank you for sponsoring by developer. podo\n");
                 break;
 
             default:
