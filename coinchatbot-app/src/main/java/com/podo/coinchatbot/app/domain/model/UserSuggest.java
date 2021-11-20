@@ -29,9 +29,6 @@ public class UserSuggest {
     @CreatedDate
     private LocalDateTime createAt;
 
-    @LastModifiedDate
-    private LocalDateTime updateAt;
-
     public UserSuggest(Long userId, String suggestText) {
         this.userId = userId;
         this.suggestText = suggestText;
