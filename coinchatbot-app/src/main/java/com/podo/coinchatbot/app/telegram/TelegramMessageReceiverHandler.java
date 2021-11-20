@@ -19,6 +19,7 @@ import com.podo.coinchatbot.app.util.DateTimeUtil;
 import com.podo.coinchatbot.core.Coin;
 import com.podo.coinchatbot.core.Language;
 import com.podo.coinchatbot.log.ThreadLocalContext;
+import io.sentry.Sentry;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.logstash.logback.argument.StructuredArguments;
@@ -75,6 +76,7 @@ public class TelegramMessageReceiverHandler {
             ThreadLocalContext.putException(e);
             if (user != null) {
                 String errorMessage = "id : " + ThreadLocalContext.id() + "\n" + "죄송합니다, 서버 에러가 발생하였습니다.\n" + CommonMessage.warningWaitSecond(user.getLanguage());
+                Sentry.captureException(e);
                 telegramMessageSender.sendMessage(SendMessageVo.create(new MessageVo(telegramId, chatId, messageId), errorMessage, Keyboard.mainKeyboard(user.getLanguage())));
                 userService.updateMenuStatus(user.getId(), Menu.MAIN);
             }
