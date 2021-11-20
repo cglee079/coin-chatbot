@@ -4,6 +4,7 @@ import com.podo.coinchatbot.app.client.market.MarketApiClient;
 import com.podo.coinchatbot.app.client.model.CoinResponse;
 import com.podo.coinchatbot.core.Coin;
 import com.podo.coinchatbot.core.Market;
+import io.sentry.Sentry;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -21,7 +22,12 @@ public class CoinEndpointer {
     }
 
     public CoinResponse getCoin(Coin coin, Market market) {
-        return marketToApiClient.get(market).getCoin(coin);
+        try {
+            return marketToApiClient.get(market).getCoin(coin);
+        }catch (Exception e){
+            Sentry.captureException(e);
+            return CoinResponse.error("서버 에러 발생!");
+        }
     }
 
 }

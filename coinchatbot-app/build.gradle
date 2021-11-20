@@ -8,6 +8,9 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.cloud:spring-cloud-starter-config'
 
+    implementation 'io.sentry:sentry-spring-boot-starter:4.3.0'
+    implementation 'io.sentry:sentry-logback:4.3.0'
+
     implementation group: 'org.telegram', name: 'telegrambots-abilities', version: '4.0.0'
     implementation 'net.logstash.logback:logstash-logback-encoder:6.3'
     implementation 'mysql:mysql-connector-java'
