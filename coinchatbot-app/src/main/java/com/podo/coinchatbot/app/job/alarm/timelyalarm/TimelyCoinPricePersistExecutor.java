@@ -1,7 +1,7 @@
 package com.podo.coinchatbot.app.job.alarm.timelyalarm;
 
-import com.podo.coinchatbot.app.client.CoinEndpointer;
-import com.podo.coinchatbot.app.client.model.CoinResponse;
+import com.podo.coinchatbot.app.external.CoinEndpointer;
+import com.podo.coinchatbot.app.external.model.CoinResponse;
 import com.podo.coinchatbot.app.domain.dto.TimelyCoinPriceInsertDto;
 import com.podo.coinchatbot.app.domain.model.TimelyCoinPriceStatus;
 import com.podo.coinchatbot.app.domain.service.TimelyCoinPriceService;

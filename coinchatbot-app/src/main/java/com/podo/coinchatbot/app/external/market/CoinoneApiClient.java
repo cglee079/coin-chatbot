@@ -1,8 +1,8 @@
-package com.podo.coinchatbot.app.client.market;
+package com.podo.coinchatbot.app.external.market;
 
-import com.podo.coinchatbot.app.client.ApiCaller;
-import com.podo.coinchatbot.app.client.model.ApiCallResult;
-import com.podo.coinchatbot.app.client.model.CoinResponse;
+import com.podo.coinchatbot.app.external.ApiCaller;
+import com.podo.coinchatbot.app.external.model.ApiCallResult;
+import com.podo.coinchatbot.app.external.model.CoinResponse;
 import com.podo.coinchatbot.core.Coin;
 import com.podo.coinchatbot.core.Market;
 import org.json.JSONObject;

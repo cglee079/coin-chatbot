@@ -98,6 +98,7 @@ public class UserService {
 
         if (NumberUtil.eq(BigDecimal.ZERO, coinCount)) {
             user.changeCoinCount(null);
+            return;
         }
 
         user.changeCoinCount(coinCount);

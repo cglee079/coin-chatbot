@@ -1,6 +1,6 @@
 package com.podo.coinchatbot.app.telegram.menu.handler;
 
-import com.podo.coinchatbot.app.client.ExchangeHolder;
+import com.podo.coinchatbot.app.external.ExchangeHolder;
 import com.podo.coinchatbot.app.domain.dto.UserDto;
 import com.podo.coinchatbot.app.domain.dto.UserTargetAlarmDto;
 import com.podo.coinchatbot.app.domain.service.UserService;

@@ -1,7 +1,7 @@
-package com.podo.coinchatbot.app.client;
+package com.podo.coinchatbot.app.external;
 
-import com.podo.coinchatbot.app.client.exception.ExchangeApiCallException;
-import com.podo.coinchatbot.app.client.model.ApiCallResult;
+import com.podo.coinchatbot.app.external.exception.ExchangeApiCallException;
+import com.podo.coinchatbot.app.external.model.ApiCallResult;
 import org.json.JSONObject;
 import org.springframework.stereotype.Component;
 

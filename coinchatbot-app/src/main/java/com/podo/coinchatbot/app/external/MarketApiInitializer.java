@@ -1,6 +1,6 @@
-package com.podo.coinchatbot.app.client;
+package com.podo.coinchatbot.app.external;
 
-import com.podo.coinchatbot.app.client.market.MarketApiClient;
+import com.podo.coinchatbot.app.external.market.MarketApiClient;
 import com.podo.coinchatbot.app.property.CoinConfig;
 import com.podo.coinchatbot.app.property.CoinConfigs;
 import com.podo.coinchatbot.app.property.MarketConfig;

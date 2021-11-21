@@ -1,6 +1,6 @@
-package com.podo.coinchatbot.app.client;
+package com.podo.coinchatbot.app.external;
 
-import com.podo.coinchatbot.app.client.model.ApiCallResult;
+import com.podo.coinchatbot.app.external.model.ApiCallResult;
 import com.podo.coinchatbot.app.util.DateTimeUtil;
 import com.podo.coinchatbot.app.util.JsonUtil;
 import com.podo.coinchatbot.log.InstanceContext;

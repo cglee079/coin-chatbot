@@ -1,10 +1,11 @@
 package com.podo.coinchatbot.app.job.alarm.targetalarm;
 
 
-import com.podo.coinchatbot.app.client.CoinEndpointer;
-import com.podo.coinchatbot.app.client.CoinEndpointerUtil;
-import com.podo.coinchatbot.app.client.model.CoinResponse;
+import com.podo.coinchatbot.app.external.CoinEndpointer;
+import com.podo.coinchatbot.app.external.CoinEndpointerUtil;
+import com.podo.coinchatbot.app.external.model.CoinResponse;
 import com.podo.coinchatbot.app.domain.dto.UserTargetAlarmDto;
+import com.podo.coinchatbot.app.domain.service.UserService;
 import com.podo.coinchatbot.app.domain.service.UserTargetAlarmService;
 import com.podo.coinchatbot.app.property.MarketConfig;
 import com.podo.coinchatbot.app.telegram.CoinFormatter;
@@ -32,12 +33,13 @@ public class TargetAlarmEachCoinExecutor {
 
     private static final Logger LOGGER = LoggerFactory.getLogger("ALARM_LOGGER");
 
+    private final ExecutorService executorService = Executors.newFixedThreadPool(3);
+    private final UserService userService;
     private final TargetAlarmEachTargetExcecutor targetAlarmEachTargetExcecutor;
     private final UserTargetAlarmService userTargetAlarmService;
     private final CoinEndpointer coinEndpointer;
     private final Map<Coin, CoinFormatter> coinToCoinFormatters;
     private final Map<Coin, TelegramMessageSender> coinToTelegramMessageSender;
-    private final ExecutorService executorService = Executors.newFixedThreadPool(3);
 
     @Transactional
     public void alarmEachCoin(InstanceContext instanceContext, Coin coin, MarketConfig marketConfig) {
@@ -74,8 +76,8 @@ public class TargetAlarmEachCoinExecutor {
                 ThreadLocalContext.put("coin.id", coin);
                 targetAlarmEachTargetExcecutor.alarmEachTarget(market, currentPrice, coinFormatter, telegramMessageSender, target);
             } catch (Exception e) {
+                userService.increaseErrorCount(target.getUserId());
                 ThreadLocalContext.putException(e);
-                throw new RuntimeException(e);
             } finally {
                 LOGGER.info("", StructuredArguments.value("context", ThreadLocalContext.toLog()));
                 ThreadLocalContext.removeAll();

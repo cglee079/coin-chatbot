@@ -1,4 +1,4 @@
-package com.podo.coinchatbot.app.client.model;
+package com.podo.coinchatbot.app.external.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

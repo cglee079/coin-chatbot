@@ -1,4 +1,4 @@
-package com.podo.coinchatbot.app.client.exception;
+package com.podo.coinchatbot.app.external.exception;
 
 public class MarketApiCallException extends RuntimeException {
 

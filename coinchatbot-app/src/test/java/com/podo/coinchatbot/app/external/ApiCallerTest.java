@@ -1,4 +1,4 @@
-package com.podo.coinchatbot.app.client;
+package com.podo.coinchatbot.app.external;
 
 import org.junit.jupiter.api.Test;
 

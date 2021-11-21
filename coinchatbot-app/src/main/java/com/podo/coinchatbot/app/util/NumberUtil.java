@@ -15,6 +15,7 @@ public class NumberUtil {
         if (x == null || y == null) {
             return false;
         }
+
         return x.doubleValue() == y.doubleValue();
     }
 

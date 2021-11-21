@@ -1,9 +1,9 @@
 package com.podo.coinchatbot.app.telegram.menu.handler.main;
 
-import com.podo.coinchatbot.app.client.CoinEndpointer;
-import com.podo.coinchatbot.app.client.CoinEndpointerUtil;
-import com.podo.coinchatbot.app.client.ExchangeHolder;
-import com.podo.coinchatbot.app.client.model.CoinResponse;
+import com.podo.coinchatbot.app.external.CoinEndpointer;
+import com.podo.coinchatbot.app.external.CoinEndpointerUtil;
+import com.podo.coinchatbot.app.external.ExchangeHolder;
+import com.podo.coinchatbot.app.external.model.CoinResponse;
 import com.podo.coinchatbot.app.domain.dto.UserDto;
 import com.podo.coinchatbot.app.domain.service.CoinInformationService;
 import com.podo.coinchatbot.app.domain.service.UserService;

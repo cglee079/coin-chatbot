@@ -1,6 +1,6 @@
 package com.podo.coinchatbot.app.job;
 
-import com.podo.coinchatbot.app.client.market.MarketApiClient;
+import com.podo.coinchatbot.app.external.market.MarketApiClient;
 import com.podo.coinchatbot.app.util.DateTimeUtil;
 import com.podo.coinchatbot.log.InstanceContext;
 import lombok.RequiredArgsConstructor;

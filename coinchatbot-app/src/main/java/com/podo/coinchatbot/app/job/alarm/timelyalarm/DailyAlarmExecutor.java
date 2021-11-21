@@ -1,8 +1,8 @@
 package com.podo.coinchatbot.app.job.alarm.timelyalarm;
 
-import com.podo.coinchatbot.app.client.CoinEndpointer;
-import com.podo.coinchatbot.app.client.CoinEndpointerUtil;
-import com.podo.coinchatbot.app.client.model.CoinResponse;
+import com.podo.coinchatbot.app.external.CoinEndpointer;
+import com.podo.coinchatbot.app.external.CoinEndpointerUtil;
+import com.podo.coinchatbot.app.external.model.CoinResponse;
 import com.podo.coinchatbot.app.domain.dto.TimelyCoinPriceDto;
 import com.podo.coinchatbot.app.domain.dto.UserDto;
 import com.podo.coinchatbot.app.domain.service.TimelyCoinPriceService;
@@ -78,6 +78,7 @@ public class DailyAlarmExecutor {
             try {
                 telegramMessageSender.sendAlarm(SendMessageVo.create(new MessageVo(user.getTelegramId(), user.getChatId()), message, null));
             } catch (Exception e) {
+                userService.increaseErrorCount(user.getId());
                 ThreadLocalContext.putException(e);
             } finally {
                 LOGGER.info("", StructuredArguments.value("context", ThreadLocalContext.toLog()));
