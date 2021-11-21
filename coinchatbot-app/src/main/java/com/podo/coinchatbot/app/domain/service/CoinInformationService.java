@@ -1,7 +1,7 @@
 package com.podo.coinchatbot.app.domain.service;
 
 import com.podo.coinchatbot.app.domain.dto.CoinInformationDto;
-import com.podo.coinchatbot.app.property.CoinConfigs;
+import com.podo.coinchatbot.property.CoinConfigs;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

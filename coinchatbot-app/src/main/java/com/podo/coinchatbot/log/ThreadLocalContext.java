@@ -1,8 +1,7 @@
 package com.podo.coinchatbot.log;
 
-import com.podo.coinchatbot.app.util.DateTimeUtil;
+import com.podo.coinchatbot.util.DateTimeUtil;
 
-import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;

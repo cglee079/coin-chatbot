@@ -1,6 +1,6 @@
 package com.podo.coinchatbot.app.model;
 
-import com.podo.coinchatbot.app.telegram.CoinFormatter;
+import com.podo.coinchatbot.telegram.CoinFormatter;
 import com.podo.coinchatbot.core.Market;
 import lombok.Builder;
 import lombok.Getter;

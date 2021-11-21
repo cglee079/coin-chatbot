@@ -1,9 +1,7 @@
 package com.podo.coinchatbot.log;
 
-import com.podo.coinchatbot.app.util.DateTimeUtil;
 import lombok.Getter;
 
-import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;

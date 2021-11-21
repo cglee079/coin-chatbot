@@ -32,7 +32,7 @@
         </root>
     </springProfile>
 
-    <logger name="MESSAGE_LOGGER" additivity="false" level="INFO">
+    <logger name="TELEGRAM_LOGGER" additivity="false" level="INFO">
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="LOG_STASH"/>
     </logger>
@@ -47,7 +47,7 @@
         <appender-ref ref="LOG_STASH"/>
     </logger>
 
-    <logger name="CLIENT_LOGGER" additivity="false" level="INFO">
+    <logger name="EXTERNAL_LOGGER" additivity="false" level="INFO">
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="LOG_STASH"/>
     </logger>
@@ -55,5 +55,6 @@
     <logger name="DEBUG_LOGGER" additivity="false" level="INFO">
         <appender-ref ref="CONSOLE"/>
     </logger>
+
 </configuration>
 
