@@ -35,7 +35,7 @@ RUN echo "Asia/Seoul" > /etc/timezone
 
 CMD java \
     -jar \
-    -Dspring.profiles.active=podo \
+    -Dspring.profiles.active=prod \
     -Xms${HEAP_SIZE} -Xmx${HEAP_SIZE} \
     -XX:NewSize=${NEW_SIZE} -XX:MaxNewSize=${NEW_SIZE} \
     -XX:MetaspaceSize=50M \
