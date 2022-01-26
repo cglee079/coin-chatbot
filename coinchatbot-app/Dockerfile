@@ -36,8 +36,10 @@ RUN echo "Asia/Seoul" > /etc/timezone
 CMD java \
     -jar \
     -Dspring.profiles.active=prod \
-    -Xms${HEAP_SIZE} -Xmx${HEAP_SIZE} \
-    -XX:NewSize=${NEW_SIZE} -XX:MaxNewSize=${NEW_SIZE} \
+#    -Xms${HEAP_SIZE} \
+    -Xmx${HEAP_SIZE} \
+#    -XX:NewSize=${NEW_SIZE}
+    -XX:MaxNewSize=${NEW_SIZE} \
     /app/$(ls /app | grep -E '.*\.jar')
 
 
