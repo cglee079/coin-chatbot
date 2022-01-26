@@ -13,4 +13,4 @@ spring.profiles.include: coins-test
 
 spring.profiles: prod
 spring.profiles.include: prod-app, prod-coins
-spring.cloud.config.uri: http://cloud.config.podo-dev.com
+spring.cloud.config.uri: http://220.88.46.130:8888
