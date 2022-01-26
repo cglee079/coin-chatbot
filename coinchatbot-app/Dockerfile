@@ -1,7 +1,7 @@
 ###########################
 ##### RUN BUILD #####
 ###########################
-FROM cglee079/podo-dev-storage:base  AS builder
+FROM cglee079/coinchatbot-app:base  AS builder
 
 COPY --chown=gradle:gradle . /home/gradle/src
 
