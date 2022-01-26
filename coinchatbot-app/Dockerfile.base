@@ -1,0 +1,18 @@
+###########################
+##### RUN BUILD #####
+###########################
+FROM gradle:6.8.2-jdk8
+
+RUN mkdir -p  /home/gradle/src/temp
+COPY --chown=gradle:gradle . /home/gradle/src/temp
+
+ARG SUB_MODULE
+
+WORKDIR /home/gradle/src/temp
+
+RUN gradle --no-daemon --debug :${SUB_MODULE}:clean
+RUN gradle --no-daemon --debug -x test :${SUB_MODULE}:dependencies
+
+WORKDIR /
+RUN rm -r /home/gradle/src/temp
+

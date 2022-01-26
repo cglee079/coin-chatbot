@@ -1,0 +1,28 @@
+archivesBaseName = 'coinchatbot-app'
+version = '0.0.0'
+
+dependencies {
+	implementation project(':coinchatbot-core')
+
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.cloud:spring-cloud-starter-config'
+
+	implementation group: 'org.telegram', name: 'telegrambots-abilities', version: '4.0.0'
+	implementation 'net.logstash.logback:logstash-logback-encoder:6.3'
+	implementation 'mysql:mysql-connector-java'
+
+	testImplementation group: 'com.h2database', name: 'h2', version: '1.4.200'
+}
+
+bootJar {
+	enabled = true
+}
+
+jar {
+	enabled = false
+}
+
+test {
+	useJUnitPlatform()
+}
