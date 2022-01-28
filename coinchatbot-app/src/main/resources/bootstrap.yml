@@ -13,4 +13,4 @@ spring.profiles.include: coins-test
 
 spring.profiles: prod
 spring.profiles.include: prod-app, prod-coins
-spring.cloud.config.uri: http://220.88.46.130:8888
+spring.cloud.config.uri: http://cloud-config-server-service.app-helloprice.svc.cluster.local:8888
