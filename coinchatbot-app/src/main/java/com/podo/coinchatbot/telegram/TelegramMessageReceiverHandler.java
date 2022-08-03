@@ -53,7 +53,7 @@ public class TelegramMessageReceiverHandler {
         ThreadLocalContext.put("coin.id", coin);
 
         Message message = getMessage(update);
-        Integer telegramId = message.getFrom().getId();
+        Long telegramId = message.getFrom().getId();
         Long chatId = message.getChatId();
         Integer messageId = message.getMessageId();
         UserDto user = userService.getOrNull(coin, chatId);
@@ -90,7 +90,7 @@ public class TelegramMessageReceiverHandler {
 
         final User telegramUser = message.getFrom();
         final String username = telegramUser.getLastName() + " " + telegramUser.getFirstName();
-        final Integer telegramId = telegramUser.getId();
+        final Long telegramId = telegramUser.getId();
         final Long chatId = message.getChatId();
         final Integer messageId = message.getMessageId();
         final String messageText = message.getText();

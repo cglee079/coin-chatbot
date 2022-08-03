@@ -5,7 +5,6 @@ import com.podo.coinchatbot.telegram.model.SendMessageVo;
 import com.podo.coinchatbot.log.ThreadLocalContext;
 import org.telegram.telegrambots.bots.DefaultAbsSender;
 import org.telegram.telegrambots.bots.DefaultBotOptions;
-import org.telegram.telegrambots.meta.ApiContext;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
@@ -14,7 +13,7 @@ public class TelegramMessageSender extends DefaultAbsSender {
     private final String botToken;
 
     public TelegramMessageSender(String botToken) {
-        super(ApiContext.getInstance(DefaultBotOptions.class));
+        super(new DefaultBotOptions());
         this.botToken = botToken;
     }
 
@@ -34,7 +33,7 @@ public class TelegramMessageSender extends DefaultAbsSender {
     }
 
     private void send(SendMessageVo sendmessageVo) {
-        final SendMessage sendMessage = new SendMessage(sendmessageVo.getChatId(), sendmessageVo.getMessage());
+        final SendMessage sendMessage = new SendMessage(sendmessageVo.getChatId().toString(), sendmessageVo.getMessage());
 
         sendMessage.setReplyMarkup(sendmessageVo.getKeyboard());
         sendMessage.setReplyToMessageId(sendmessageVo.getMessageId());

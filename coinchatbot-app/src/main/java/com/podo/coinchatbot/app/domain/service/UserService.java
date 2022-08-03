@@ -29,7 +29,7 @@ public class UserService {
     private final UserRepository userRepository;
 
     @Transactional
-    public synchronized void createNewUser(Coin coin, Integer telegramId, Long chatId, String username, Market market, LocalDateTime messageSendAt) {
+    public synchronized void createNewUser(Coin coin, Long telegramId, Long chatId, String username, Market market, LocalDateTime messageSendAt) {
         User user = User.builder()
                 .coin(coin)
                 .telegramId(telegramId)

@@ -30,7 +30,7 @@ public class TargetAlarmEachTargetExcecutor {
     public void alarmEachTarget(Market market, BigDecimal currentPrice, CoinFormatter coinFormatter, TelegramMessageSender telegramMessageSender, UserTargetAlarmDto target) {
         BigDecimal targetPrice = target.getTargetPrice();
         UserDto user = userService.getByUserId(target.getUserId());
-        Integer telegramId = user.getTelegramId();
+        Long telegramId = user.getTelegramId();
         Long chatId = user.getChatId();
         Language language = user.getLanguage();
 

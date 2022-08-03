@@ -38,7 +38,7 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Market market;
 
-    private Integer telegramId;
+    private Long telegramId;
 
     private Long chatId;
 
@@ -74,7 +74,7 @@ public class User {
     private UserStatus userStatus;
 
     @Builder
-    public User(Coin coin, Market market, Integer telegramId, String username, Long chatId,
+    public User(Coin coin, Market market, Long telegramId, String username, Long chatId,
                 Integer dayloopAlarm, Integer timeloopAlarm, Menu menuStatus, BigDecimal invest,
                 BigDecimal coinCount, Integer errorCount, Language language, Long timeDifference,
                 LocalDateTime messageSendAt, UserStatus userStatus) {

@@ -8,7 +8,7 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
 @Getter
 public class SendMessageVo {
 
-    private Integer telegramId;
+    private Long telegramId;
     private Long chatId;
     private Integer messageId;
     private String message;

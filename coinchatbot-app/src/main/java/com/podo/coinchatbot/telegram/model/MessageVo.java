@@ -7,16 +7,16 @@ import lombok.Getter;
 @Getter
 public class MessageVo {
 
-    private Integer telegramId;
+    private Long telegramId;
     private Long chatId;
     private Integer messageId;
 
-    public MessageVo(Integer telegramId, Long chatId) {
+    public MessageVo(Long telegramId, Long chatId) {
         this.telegramId = telegramId;
         this.chatId = chatId;
     }
 
-    public MessageVo(Integer telegramId, Long chatId, Integer messageId) {
+    public MessageVo(Long telegramId, Long chatId, Integer messageId) {
         this.telegramId = telegramId;
         this.chatId = chatId;
         this.messageId = messageId;

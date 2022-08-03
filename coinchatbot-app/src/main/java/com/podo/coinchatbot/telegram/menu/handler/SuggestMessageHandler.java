@@ -25,7 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class SuggestMessageHandler extends AbstractMenuHandler {
 
     @Value("${admin.telegramId:}")
-    private final Integer adminTelegramId;
+    private final Long adminTelegramId;
 
     @Value("${admin.chatId:}")
     private final Long adminChatId;

@@ -11,7 +11,7 @@ dependencies {
     implementation 'io.sentry:sentry-spring-boot-starter:4.3.0'
     implementation 'io.sentry:sentry-logback:4.3.0'
 
-    implementation group: 'org.telegram', name: 'telegrambots-abilities', version: '4.0.0'
+    implementation group: 'org.telegram', name: 'telegrambots-abilities', version: '6.1.0'
     implementation 'net.logstash.logback:logstash-logback-encoder:6.3'
     implementation 'mysql:mysql-connector-java'
 

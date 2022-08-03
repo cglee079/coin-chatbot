@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 public class UserDto {
     private Long id;
     private Coin coin;
-    private Integer telegramId;
+    private Long telegramId;
     private Long chatId;
     private String username;
     private Long timeDifference;
