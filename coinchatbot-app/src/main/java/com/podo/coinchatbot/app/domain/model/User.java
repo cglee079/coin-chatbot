@@ -138,8 +138,13 @@ public class User {
 
     public void increaseErrorCount() {
         this.errorCount++;
-        if (errorCount > 5) {
+        if (errorCount > 100) {
             this.userStatus = UserStatus.DEAD;
         }
+    }
+
+    public void alive() {
+        this.errorCount = 0;
+        this.userStatus = UserStatus.ALIVE;
     }
 }

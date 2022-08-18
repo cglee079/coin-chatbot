@@ -52,9 +52,10 @@ public class UserService {
     }
 
     @Transactional
-    public void updateMessageSendAt(Long userId, LocalDateTime messageReceiveAt) {
+    public void updateMessageSendAtAndAlive(Long userId, LocalDateTime messageReceiveAt) {
         User user = findByUserId(userId);
         user.updateMessageSendAt(messageReceiveAt);
+        user.alive();
     }
 
     @Transactional
@@ -157,7 +158,7 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public List<UserDto> getForTimeloopAlarm(Coin coin, Market market, Integer timeloop) {
-        return userRepository.findByCoinAndMarketAndTimeloopAlarm(coin, market, timeloop)
+        return userRepository.findByCoinAndMarketAndTimeloopAlarmAndUserStatus(coin, market, timeloop, UserStatus.ALIVE)
                 .stream()
                 .map(UserDto::new)
                 .collect(Collectors.toList());
@@ -165,7 +166,7 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public List<UserDto> getForDayloopAlarm(Coin coin, Market market, Integer dayLoop, LocalDateTime now) {
-        return userRepository.findByCoinAndMarketAndDayloopAlarm(coin, market, dayLoop)
+        return userRepository.findByCoinAndMarketAndDayloopAlarmAndUserStatus(coin, market, dayLoop, UserStatus.ALIVE)
                 .stream()
                 .filter(c -> {
                     LocalDateTime userLocalDateTime = DateTimeUtil.longToLocalDateTime(DateTimeUtil.dateTimeToLong(now) + c.getTimeDifference());

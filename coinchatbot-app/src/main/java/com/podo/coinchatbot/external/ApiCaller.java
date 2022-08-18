@@ -51,7 +51,6 @@ public class ApiCaller {
 
     private static Map<String, Object> getResponse(ResponseEntity<String> exchange) {
         Map<String, Object> response = new HashMap<>();
-        response.put("body", exchange.getBody());
         response.put("status", exchange.getStatusCodeValue());
         response.put("headers", JsonUtil.toJSON(exchange.getHeaders()));
         return response;

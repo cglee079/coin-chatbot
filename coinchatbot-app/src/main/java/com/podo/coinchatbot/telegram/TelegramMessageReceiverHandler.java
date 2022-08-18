@@ -125,7 +125,7 @@ public class TelegramMessageReceiverHandler {
             return;
         }
 
-        userService.updateMessageSendAt(user.getId(), messageReceivedAt);
+        userService.updateMessageSendAtAndAlive(user.getId(), messageReceivedAt);
 
         handleCommand(messageVo, user, coin, coinMeta, messageText, telegramMessageSender);
     }
