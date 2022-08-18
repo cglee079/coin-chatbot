@@ -27,7 +27,7 @@ public class Keyboard {
 
     static {
 
-        DEFAULT_KEYBOARD = new ReplyKeyboardRemove();
+        DEFAULT_KEYBOARD = new ReplyKeyboardRemove(true);
         LANG_TO_MAIN_KEYBOARD = new EnumMap<>(Language.class);
         LANG_TO_SET_DAYLOOP_ALERT_KEYBOARD = new EnumMap<>(Language.class);
         LANG_TO_SET_TIMELOOP_ALERT_KEYBOARD = new EnumMap<>(Language.class);
