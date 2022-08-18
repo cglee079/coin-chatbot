@@ -1,5 +1,6 @@
 package com.podo.coinchatbot.telegram;
 
+import com.podo.coinchatbot.telegram.model.MessageVo;
 import com.podo.coinchatbot.telegram.model.SendMessageVo;
 
 public class TelegramMessageAlarmSender extends TelegramMessageSender {
@@ -11,10 +12,8 @@ public class TelegramMessageAlarmSender extends TelegramMessageSender {
         this.coupangUrl = coupangUrl;
     }
 
-    public void sendAlarm(SendMessageVo sv) {
-        super.sendMessage(sv);
-        SendMessageVo coupangRecommendSv = new SendMessageVo(sv.getTelegramId(), sv.getChatId(), sv.getMessageId(), "쇼핑은 쿠팡 \uD83D\uDE80 !! : " + coupangUrl, null);
-        super.sendMessage(coupangRecommendSv);
+    public void sendCoupangRecommend(MessageVo sv) {
+        super.sendMessage(SendMessageVo.create(sv, "쇼핑은 쿠팡 \uD83D\uDE80 !! : " + coupangUrl, null));
     }
 
 

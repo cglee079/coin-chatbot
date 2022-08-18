@@ -78,7 +78,8 @@ public class HourlyAlarmExecutor {
             ThreadLocalContext.init("hourly-alarm");
             ThreadLocalContext.put("coin.id", coin);
             try {
-                telegramMessageSender.sendAlarm(SendMessageVo.create(new MessageVo(user.getTelegramId(), user.getChatId()), message, null));
+                telegramMessageSender.sendMessage(SendMessageVo.create(new MessageVo(user.getTelegramId(), user.getChatId()), message, null));
+                telegramMessageSender.sendCoupangRecommend(new MessageVo(user.getTelegramId(), user.getChatId()));
             } catch (Exception e) {
                 userService.increaseErrorCount(user.getId());
                 ThreadLocalContext.putException(e);

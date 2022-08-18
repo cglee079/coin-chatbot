@@ -41,10 +41,11 @@ public class TargetAlarmEachTargetExecutor {
         ThreadLocalContext.put("coin.current.price", currentPrice);
 
         String message = msgTargetPriceNotify(currentPrice, targetPrice, market, language, coinFormatter);
-        telegramMessageSender.sendAlarm(SendMessageVo.create(new MessageVo(telegramId, chatId), message, null));
+        telegramMessageSender.sendMessage(SendMessageVo.create(new MessageVo(telegramId, chatId), message, null));
 
         userTargetAlarmService.deleteById(target.getId());
-        telegramMessageSender.sendAlarm(SendMessageVo.create(new MessageVo(telegramId, chatId), msgTargetPriceDeleted(language), null));
+        telegramMessageSender.sendMessage(SendMessageVo.create(new MessageVo(telegramId, chatId), msgTargetPriceDeleted(language), null));
+        telegramMessageSender.sendCoupangRecommend(new MessageVo(telegramId, chatId));
     }
 
     private String msgTargetPriceNotify(BigDecimal currentValue, BigDecimal targetPrice, Market market, Language language, CoinFormatter coinFormatter) {
