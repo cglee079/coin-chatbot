@@ -9,7 +9,7 @@ import com.podo.coinchatbot.app.domain.service.TimelyCoinPriceService;
 import com.podo.coinchatbot.app.domain.service.UserService;
 import com.podo.coinchatbot.property.MarketConfig;
 import com.podo.coinchatbot.telegram.CoinFormatter;
-import com.podo.coinchatbot.telegram.TelegramMessageSender;
+import com.podo.coinchatbot.telegram.TelegramMessageAlarmSender;
 import com.podo.coinchatbot.telegram.exception.InvalidUserLanguageException;
 import com.podo.coinchatbot.telegram.model.MessageVo;
 import com.podo.coinchatbot.telegram.model.SendMessageVo;
@@ -40,14 +40,14 @@ public class HourlyAlarmExecutor {
     private final TimelyCoinPriceService timelyCoinPriceService;
     private final CoinEndpointer coinEndpointer;
     private final Map<Coin, CoinFormatter> coinToCoinFormatters;
-    private final Map<Coin, TelegramMessageSender> coinToTelegramMessageSenders;
+    private final Map<Coin, TelegramMessageAlarmSender> coinToTelegramMessageAlarmSenders;
     private final ExecutorService executorService = Executors.newFixedThreadPool(3);
 
     public void sendHourlyAlarm(Coin coin, MarketConfig marketConfig, Integer timeloop, LocalDateTime now) {
         Market market = marketConfig.getMarket();
         List<UserDto> users = userService.getForTimeloopAlarm(coin, market, timeloop);
         CoinFormatter coinFormatter = coinToCoinFormatters.get(coin);
-        TelegramMessageSender telegramMessageSender = coinToTelegramMessageSenders.get(coin);
+        TelegramMessageAlarmSender telegramMessageSender = coinToTelegramMessageAlarmSenders.get(coin);
 
         if (users.isEmpty()) {
             return;
@@ -73,7 +73,7 @@ public class HourlyAlarmExecutor {
         }
     }
 
-    private void sendAlarm(Coin coin, UserDto user, String message, TelegramMessageSender telegramMessageSender) {
+    private void sendAlarm(Coin coin, UserDto user, String message, TelegramMessageAlarmSender telegramMessageSender) {
         executorService.submit(() -> {
             ThreadLocalContext.init("hourly-alarm");
             ThreadLocalContext.put("coin.id", coin);

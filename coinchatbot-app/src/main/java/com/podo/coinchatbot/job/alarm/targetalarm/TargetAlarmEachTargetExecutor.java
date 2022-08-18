@@ -6,7 +6,7 @@ import com.podo.coinchatbot.app.domain.dto.UserTargetAlarmDto;
 import com.podo.coinchatbot.app.domain.service.UserService;
 import com.podo.coinchatbot.app.domain.service.UserTargetAlarmService;
 import com.podo.coinchatbot.telegram.CoinFormatter;
-import com.podo.coinchatbot.telegram.TelegramMessageSender;
+import com.podo.coinchatbot.telegram.TelegramMessageAlarmSender;
 import com.podo.coinchatbot.telegram.exception.InvalidUserLanguageException;
 import com.podo.coinchatbot.telegram.model.MessageVo;
 import com.podo.coinchatbot.telegram.model.SendMessageVo;
@@ -21,13 +21,13 @@ import java.math.BigDecimal;
 
 @Component
 @RequiredArgsConstructor
-public class TargetAlarmEachTargetExcecutor {
+public class TargetAlarmEachTargetExecutor {
 
     private final UserTargetAlarmService userTargetAlarmService;
     private final UserService userService;
 
     @Transactional
-    public void alarmEachTarget(Market market, BigDecimal currentPrice, CoinFormatter coinFormatter, TelegramMessageSender telegramMessageSender, UserTargetAlarmDto target) {
+    public void alarmEachTarget(Market market, BigDecimal currentPrice, CoinFormatter coinFormatter, TelegramMessageAlarmSender telegramMessageSender, UserTargetAlarmDto target) {
         BigDecimal targetPrice = target.getTargetPrice();
         UserDto user = userService.getByUserId(target.getUserId());
         Long telegramId = user.getTelegramId();

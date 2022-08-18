@@ -9,11 +9,11 @@ import com.podo.coinchatbot.app.domain.service.UserService;
 import com.podo.coinchatbot.app.domain.service.UserTargetAlarmService;
 import com.podo.coinchatbot.property.MarketConfig;
 import com.podo.coinchatbot.telegram.CoinFormatter;
-import com.podo.coinchatbot.telegram.TelegramMessageSender;
 import com.podo.coinchatbot.core.Coin;
 import com.podo.coinchatbot.core.Market;
 import com.podo.coinchatbot.log.InstanceContext;
 import com.podo.coinchatbot.log.ThreadLocalContext;
+import com.podo.coinchatbot.telegram.TelegramMessageAlarmSender;
 import lombok.RequiredArgsConstructor;
 import net.logstash.logback.argument.StructuredArguments;
 import org.slf4j.Logger;
@@ -35,11 +35,11 @@ public class TargetAlarmEachCoinExecutor {
 
     private final ExecutorService executorService = Executors.newFixedThreadPool(3);
     private final UserService userService;
-    private final TargetAlarmEachTargetExcecutor targetAlarmEachTargetExcecutor;
+    private final TargetAlarmEachTargetExecutor targetAlarmEachTargetExcecutor;
     private final UserTargetAlarmService userTargetAlarmService;
     private final CoinEndpointer coinEndpointer;
     private final Map<Coin, CoinFormatter> coinToCoinFormatters;
-    private final Map<Coin, TelegramMessageSender> coinToTelegramMessageSender;
+    private final Map<Coin, TelegramMessageAlarmSender> coinToTelegramMessageSender;
 
     @Transactional
     public void alarmEachCoin(InstanceContext instanceContext, Coin coin, MarketConfig marketConfig) {
@@ -67,7 +67,7 @@ public class TargetAlarmEachCoinExecutor {
 
     private void alarmEachTarget(InstanceContext instanceContext, Market market, BigDecimal currentPrice, Coin coin, UserTargetAlarmDto target) {
         CoinFormatter coinFormatter = coinToCoinFormatters.get(coin);
-        TelegramMessageSender telegramMessageSender = coinToTelegramMessageSender.get(coin);
+        TelegramMessageAlarmSender telegramMessageSender = coinToTelegramMessageSender.get(coin);
 
         executorService.submit(() -> {
             try {

@@ -5,8 +5,9 @@ import com.podo.coinchatbot.property.CoinConfigs;
 import com.podo.coinchatbot.property.DigitConfig;
 import com.podo.coinchatbot.property.MarketConfig;
 import com.podo.coinchatbot.telegram.CoinFormatter;
-import com.podo.coinchatbot.telegram.TelegramMessageSender;
 import com.podo.coinchatbot.core.Coin;
+import com.podo.coinchatbot.telegram.TelegramMessageAlarmSender;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -31,12 +32,12 @@ public class AlarmJobConfig {
     }
 
     @Bean
-    public Map<Coin, TelegramMessageSender> coinToTelegramMessageSender(CoinConfigs coinConfigs) {
-        Map<Coin, TelegramMessageSender> coinToTelegramMessageSender = new EnumMap<>(Coin.class);
+    public Map<Coin, TelegramMessageAlarmSender> coinToTelegramMessageAlarmSender(CoinConfigs coinConfigs, @Value("${reference.coupang.url:}") String coupangUrl) {
+        Map<Coin, TelegramMessageAlarmSender> coinToTelegramMessageSender = new EnumMap<>(Coin.class);
         coinConfigs.getProperties()
                 .stream()
                 .filter(c -> c.getBotConfig().getEnabled())
-                .forEach(c -> coinToTelegramMessageSender.put(c.getCoin(), new TelegramMessageSender(c.getBotConfig().getToken())));
+                .forEach(c -> coinToTelegramMessageSender.put(c.getCoin(), new TelegramMessageAlarmSender(c.getBotConfig().getToken(), coupangUrl)));
 
         return coinToTelegramMessageSender;
     }

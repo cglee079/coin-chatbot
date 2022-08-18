@@ -9,7 +9,7 @@ import com.podo.coinchatbot.app.domain.service.TimelyCoinPriceService;
 import com.podo.coinchatbot.app.domain.service.UserService;
 import com.podo.coinchatbot.property.MarketConfig;
 import com.podo.coinchatbot.telegram.CoinFormatter;
-import com.podo.coinchatbot.telegram.TelegramMessageSender;
+import com.podo.coinchatbot.telegram.TelegramMessageAlarmSender;
 import com.podo.coinchatbot.telegram.model.MessageVo;
 import com.podo.coinchatbot.telegram.model.SendMessageVo;
 import com.podo.coinchatbot.util.DateTimeUtil;
@@ -39,14 +39,14 @@ public class DailyAlarmExecutor {
     private final TimelyCoinPriceService timelyCoinPriceService;
     private final CoinEndpointer coinEndpointer;
     private final Map<Coin, CoinFormatter> coinToCoinFormatters;
-    private final Map<Coin, TelegramMessageSender> coinToTelegramMessageSenders;
+    private final Map<Coin, TelegramMessageAlarmSender> coinToTelegramMessageSenders;
     private final ExecutorService executorService = Executors.newFixedThreadPool(3);
 
     public void sendDailyAlarm(Coin coin, MarketConfig marketConfig, Integer dayloop, LocalDateTime now) {
         Market market = marketConfig.getMarket();
         List<UserDto> users = userService.getForDayloopAlarm(coin, market, dayloop, now);
         CoinFormatter coinFormatter = coinToCoinFormatters.get(coin);
-        TelegramMessageSender telegramMessageSender = coinToTelegramMessageSenders.get(coin);
+        TelegramMessageAlarmSender telegramMessageSender = coinToTelegramMessageSenders.get(coin);
 
         if (users.isEmpty()) {
             return;
@@ -71,7 +71,7 @@ public class DailyAlarmExecutor {
         }
     }
 
-    private void sendAlarm(Coin coin, UserDto user, String message, TelegramMessageSender telegramMessageSender) {
+    private void sendAlarm(Coin coin, UserDto user, String message, TelegramMessageAlarmSender telegramMessageSender) {
         executorService.submit(() -> {
             ThreadLocalContext.init("daily-alarm");
             ThreadLocalContext.put("coin.id", coin);
