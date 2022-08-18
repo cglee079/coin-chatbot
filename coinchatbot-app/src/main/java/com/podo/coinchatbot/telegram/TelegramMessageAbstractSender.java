@@ -30,6 +30,7 @@ public abstract class TelegramMessageAbstractSender extends DefaultAbsSender {
         sendMessage.setReplyToMessageId(sendmessageVo.getMessageId());
         sendMessage.enableHtml(true);
         sendMessage.enableMarkdown(false);
+        sendMessage.
 
         try {
             this.execute(sendMessage);
