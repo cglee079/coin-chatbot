@@ -13,6 +13,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -22,6 +23,7 @@ import java.util.Map;
 
 @UtilityClass
 public class ApiCaller {
+
 
     private static final Logger LOGGER = LoggerFactory.getLogger("EXTERNAL_LOGGER");
     public static final String USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36";
@@ -33,7 +35,7 @@ public class ApiCaller {
         clientContext.put("client.request.at", DateTimeUtil.toFullContextString(LocalDateTime.now()));
         clientContext.put("client.request", getRequest(url, method));
 
-        RestTemplate restTemplate = new RestTemplate();
+        RestTemplate restTemplate = restTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.add("user-agent", USER_AGENT);
 
@@ -73,6 +75,13 @@ public class ApiCaller {
 
     public static String getQueryString(String url) {
         return UriComponentsBuilder.fromUriString(url).build().getQuery();
+    }
+
+    private static RestTemplate restTemplate() {
+        HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
+        factory.setConnectTimeout(6 * 1000);
+        factory.setReadTimeout(6 * 1000);
+        return new RestTemplate(factory);
     }
 
 }

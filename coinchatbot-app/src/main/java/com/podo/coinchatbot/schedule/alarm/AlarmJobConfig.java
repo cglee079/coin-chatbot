@@ -1,4 +1,4 @@
-package com.podo.coinchatbot.job.alarm;
+package com.podo.coinchatbot.schedule.alarm;
 
 import com.podo.coinchatbot.property.CoinConfig;
 import com.podo.coinchatbot.property.CoinConfigs;

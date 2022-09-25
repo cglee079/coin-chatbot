@@ -1,4 +1,4 @@
-package com.podo.coinchatbot.job;
+package com.podo.coinchatbot.schedule;
 
 public interface Job {
 

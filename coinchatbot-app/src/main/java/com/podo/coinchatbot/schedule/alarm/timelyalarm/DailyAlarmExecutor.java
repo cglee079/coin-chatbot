@@ -1,4 +1,4 @@
-package com.podo.coinchatbot.job.alarm.timelyalarm;
+package com.podo.coinchatbot.schedule.alarm.timelyalarm;
 
 import com.podo.coinchatbot.external.CoinEndpointer;
 import com.podo.coinchatbot.external.CoinEndpointerUtil;

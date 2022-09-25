@@ -1,6 +1,6 @@
-package com.podo.coinchatbot.job.alarm.timelyalarm;
+package com.podo.coinchatbot.schedule.alarm.timelyalarm;
 
-import com.podo.coinchatbot.job.Job;
+import com.podo.coinchatbot.schedule.Job;
 import com.podo.coinchatbot.property.MarketConfig;
 import com.podo.coinchatbot.util.DateTimeUtil;
 import com.podo.coinchatbot.core.Coin;
@@ -27,7 +27,7 @@ public class TimelyAlarmJob implements Job {
     private final TimelyCoinPricePersistExecutor timelyCoinPricePersistExecutor;
     private final Map<Coin, List<MarketConfig>> coinToEnableMarketConfigs;
 
-    @Scheduled(cron = "02 00 0/1 * * *")
+    @Scheduled(cron = "0 17 0/1 * * *")
     public void run() {
         InstanceContext instanceContext = new InstanceContext("timely-alarm-job");
 

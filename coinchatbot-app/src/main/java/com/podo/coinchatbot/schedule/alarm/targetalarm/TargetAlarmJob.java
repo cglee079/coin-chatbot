@@ -1,7 +1,7 @@
-package com.podo.coinchatbot.job.alarm.targetalarm;
+package com.podo.coinchatbot.schedule.alarm.targetalarm;
 
 
-import com.podo.coinchatbot.job.Job;
+import com.podo.coinchatbot.schedule.Job;
 import com.podo.coinchatbot.property.MarketConfig;
 import com.podo.coinchatbot.util.DateTimeUtil;
 import com.podo.coinchatbot.core.Coin;

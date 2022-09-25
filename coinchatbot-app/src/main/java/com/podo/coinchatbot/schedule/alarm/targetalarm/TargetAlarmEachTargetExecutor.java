@@ -1,4 +1,4 @@
-package com.podo.coinchatbot.job.alarm.targetalarm;
+package com.podo.coinchatbot.schedule.alarm.targetalarm;
 
 
 import com.podo.coinchatbot.app.domain.dto.UserDto;

@@ -1,4 +1,4 @@
-package com.podo.coinchatbot.job;
+package com.podo.coinchatbot.schedule;
 
 import com.podo.coinchatbot.external.market.MarketApiClient;
 import com.podo.coinchatbot.util.DateTimeUtil;
