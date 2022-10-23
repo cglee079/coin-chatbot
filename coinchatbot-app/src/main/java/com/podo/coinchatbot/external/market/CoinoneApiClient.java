@@ -32,13 +32,17 @@ public class CoinoneApiClient extends MarketApiClient {
             return CoinResponse.error("Coinone ErrorCode : " + jsonObj.getInt("errorCode"));
         }
 
-        return CoinResponse.success()
-                .volume(jsonObj.getBigDecimal("volume"))
-                .openPrice(jsonObj.getBigDecimal("first"))
-                .lastPrice(jsonObj.getBigDecimal("last"))
-                .highPrice(jsonObj.getBigDecimal("high"))
-                .lowPrice(jsonObj.getBigDecimal("low"))
-                .build();
+         try {
+            return CoinResponse.success()
+                    .volume(jsonObj.getBigDecimal("volume"))
+                    .openPrice(jsonObj.getBigDecimal("first"))
+                    .lastPrice(jsonObj.getBigDecimal("last"))
+                    .highPrice(jsonObj.getBigDecimal("high"))
+                    .lowPrice(jsonObj.getBigDecimal("low"))
+                    .build();
+        }catch (Exception e){
+            return CoinResponse.error("Coinone ErrorCode : " + e.getMessage());
+        }
     }
 
     @Override
