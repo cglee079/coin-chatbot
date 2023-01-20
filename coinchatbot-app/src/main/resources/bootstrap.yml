@@ -13,4 +13,4 @@ spring.profiles.include: coins-test
 
 spring.profiles: prod
 spring.profiles.include: prod-app, prod-coins
-spring.cloud.config.uri: http://192.168.50.10:30888
+spring.cloud.config.uri: http://cloud-config-server-service.app-cloud-config-server.svc.cluster.local:8888
